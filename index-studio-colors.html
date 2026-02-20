@@ -274,8 +274,8 @@
         top: 0;
         left: 0;
         right: 0;
-        background: #0c0d10;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        background: var(--color-grey);
+        border-bottom: 1px solid var(--theme-outline-variant);
         backdrop-filter: none;
         box-shadow: none;
         z-index: 20;
@@ -306,7 +306,7 @@
         letter-spacing: -0.01em;
         text-transform: none;
         text-decoration: none;
-        color: #f2efe8;
+        color: #1a1a19;
       }
 
       .brand::after {
@@ -340,7 +340,7 @@
         display: inline-flex;
         align-items: center;
         gap: 0.15rem;
-        color: rgba(242, 239, 232, 0.68);
+        color: #57544d;
         padding: 0.45em 0.85em;
         font-size: 0.92rem;
         border: 1px solid transparent;
@@ -348,9 +348,9 @@
 
       header nav a:hover,
       header nav a:focus-visible {
-        color: rgba(242, 239, 232, 0.95);
-        background: rgba(255, 255, 255, 0.06);
-        border-color: rgba(255, 255, 255, 0.14);
+        color: #2d2b28;
+        background: rgba(20, 20, 19, 0.05);
+        border-color: var(--theme-outline-variant);
       }
 
       .nav-caret {
@@ -364,18 +364,6 @@
         gap: 0.48rem;
       }
 
-      .header-login {
-        color: rgba(242, 239, 232, 0.78);
-        text-decoration: none;
-        font-size: 0.92rem;
-        padding: 0.3rem 0.2rem;
-      }
-
-      .header-login:hover,
-      .header-login:focus-visible {
-        color: rgba(242, 239, 232, 0.96);
-      }
-
       .header-contact,
       .header-try {
         min-height: 36px;
@@ -386,24 +374,24 @@
 
       .header-contact {
         background: transparent;
-        color: rgba(242, 239, 232, 0.92);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #36342f;
+        border: 1px solid color-mix(in srgb, var(--color-black) 16%, transparent);
       }
 
       .header-contact:hover,
       .header-contact:focus-visible {
-        background: rgba(255, 255, 255, 0.08);
+        background: rgba(20, 20, 19, 0.05);
       }
 
       .header-try {
-        background: #f2efe8;
-        color: #111114;
-        border: 1px solid rgba(255, 255, 255, 0.22);
+        background: #161614;
+        color: #f7f5ef;
+        border: 1px solid #161614;
       }
 
       .header-try:hover,
       .header-try:focus-visible {
-        background: #ffffff;
+        background: #050505;
       }
 
       main {
@@ -424,17 +412,13 @@
         display: grid;
         grid-template-rows: auto 1fr;
         padding: 0 0 clamp(2.8rem, 6.8vh, 4.8rem);
-        background: #0b0c10;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        background: var(--color-grey);
+        border-bottom: 1px solid var(--theme-outline-variant);
         overflow: clip;
       }
 
       #welcome::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(58% 40% at 50% 0%, rgba(224, 112, 69, 0.19) 0%, rgba(224, 112, 69, 0.03) 55%, rgba(11, 12, 16, 0) 78%);
-        pointer-events: none;
+        content: none;
       }
 
       #welcome::after {
@@ -449,9 +433,9 @@
         align-items: center;
         justify-content: space-between;
         padding: 0 clamp(1rem, 2.2vw, 1.65rem);
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        color: rgba(255, 255, 255, 0.6);
+        border-top: 1px solid var(--theme-outline-variant);
+        border-bottom: 1px solid var(--theme-outline-variant);
+        color: #737066;
       }
 
       #welcome .hero-rail-left {
@@ -460,7 +444,7 @@
       }
 
       #welcome .hero-rail-left strong {
-        color: rgba(255, 255, 255, 0.84);
+        color: #4a4741;
         font-weight: 500;
       }
 
@@ -469,13 +453,13 @@
         align-items: center;
         gap: 0.12rem;
         text-decoration: none;
-        color: rgba(255, 255, 255, 0.58);
+        color: #7a766d;
         font-size: 0.86rem;
       }
 
       #welcome .hero-rail-right:hover,
       #welcome .hero-rail-right:focus-visible {
-        color: rgba(255, 255, 255, 0.9);
+        color: #3f3c37;
       }
 
       #welcome .hero-shell {
@@ -495,10 +479,10 @@
         align-items: center;
         gap: 0.44rem;
         border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid color-mix(in srgb, var(--color-black) 12%, transparent);
+        background: #f5f1eb;
         padding: 0.44rem 0.92rem;
-        color: #d5714b;
+        color: #c66b46;
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
         font-size: 0.82rem;
       }
@@ -514,67 +498,50 @@
         line-height: 0.98;
         letter-spacing: -0.03em;
         font-weight: 500;
-        color: #f2efe8;
+        color: var(--color-black);
       }
 
       #welcome .hero-title-accent {
-        color: #d5714b;
+        color: #c66b46;
       }
 
       #welcome .hero-title-word {
-        color: #d5714b;
+        color: #c66b46;
         font-style: normal;
       }
 
       #welcome .hero-sub {
         margin: 1.5rem 0 0;
         max-width: 44ch;
-        color: rgba(255, 255, 255, 0.48);
+        color: #6e6a63;
         font-size: clamp(1rem, 1.72vw, 1.13rem);
         line-height: 1.45;
       }
 
       #welcome .hero-install-note {
         margin: 1.8rem 0 0;
-        color: rgba(255, 255, 255, 0.52);
+        color: #838077;
         font-size: 0.97rem;
       }
 
       #welcome .hero-install-note a {
-        color: rgba(255, 255, 255, 0.78);
+        color: #5c5850;
       }
 
       #welcome .hero-command {
         margin-top: 0.58rem;
-        width: min(100%, 760px);
+        width: min(100%, 560px);
         display: flex;
         align-items: center;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        border: 1px solid color-mix(in srgb, var(--color-black) 14%, transparent);
         border-radius: 0.85rem;
-        background: rgba(255, 255, 255, 0.02);
-        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
-      }
-
-      #welcome .hero-command-action {
-        border: none;
-        border-radius: 0;
-        min-height: 52px;
-        padding: 0 1.25rem;
-        background: #f2efe8;
-        color: #111114;
-        border-right: 1px solid rgba(255, 255, 255, 0.14);
-        font-size: 1.05rem;
-        font-weight: 500;
-      }
-
-      #welcome .hero-command-action:hover,
-      #welcome .hero-command-action:focus-visible {
-        background: #ffffff;
+        background: #f3efe9;
+        box-shadow: 0 8px 22px rgba(20, 20, 19, 0.08);
       }
 
       #welcome .hero-command-line {
         flex: 1;
-        min-height: 52px;
+        min-height: 50px;
         padding: 0 0.74rem 0 0.9rem;
         display: flex;
         align-items: center;
@@ -584,27 +551,19 @@
 
       #welcome .hero-command-line code {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-        font-size: 0.98rem;
-        color: rgba(242, 239, 232, 0.92);
+        font-size: 1.02rem;
+        color: #2d2b28;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
 
       #welcome .hero-command-line .cmd {
-        color: #d5714b;
+        color: #d46f47;
       }
 
       #welcome .hero-command-line .url {
-        color: #f1ede4;
-      }
-
-      #welcome .hero-command-line .pipe {
-        color: rgba(255, 255, 255, 0.42);
-      }
-
-      #welcome .hero-command-line .bash {
-        color: #5d86cc;
+        color: #2f2c28;
       }
 
       #welcome .hero-copy {
@@ -614,27 +573,33 @@
         min-height: 30px;
         padding: 0;
         background: transparent;
-        color: rgba(255, 255, 255, 0.55);
+        color: color-mix(in srgb, var(--color-black) 54%, transparent);
       }
 
       #welcome .hero-copy:hover,
       #welcome .hero-copy:focus-visible {
-        color: rgba(255, 255, 255, 0.92);
-        background: rgba(255, 255, 255, 0.08);
+        color: color-mix(in srgb, var(--color-black) 86%, transparent);
+        background: color-mix(in srgb, var(--color-black) 8%, transparent);
+      }
+
+      #welcome .hero-cases {
+        margin: 1.1rem 0 0;
+        color: #7c786f;
+        font-size: 0.98rem;
+      }
+
+      #welcome .hero-cases a {
+        color: #5f5a53;
       }
 
       #welcome .hero-platforms {
-        margin-top: 1.05rem;
-        color: rgba(255, 255, 255, 0.48);
-        font-size: 0.97rem;
-      }
-
-      #welcome .hero-platforms a {
-        color: rgba(255, 255, 255, 0.72);
+        margin-top: clamp(3rem, 8vh, 4.3rem);
+        color: #b7b2a8;
+        font-size: 0.95rem;
       }
 
       #welcome .hero-platform-list {
-        margin-top: clamp(2.8rem, 8vh, 4.2rem);
+        margin-top: 0.75rem;
         width: min(100%, 940px);
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -642,16 +607,10 @@
       }
 
       #welcome .hero-platform-list span {
-        color: rgba(255, 255, 255, 0.84);
-        font-size: clamp(1.85rem, 2.9vw, 2.95rem);
+        color: #c5c0b8;
+        font-size: 0.95rem;
         font-weight: 600;
-        letter-spacing: -0.015em;
-        font-family: var(--font-ui);
-      }
-
-      #welcome .hero-platform-list span:nth-child(1),
-      #welcome .hero-platform-list span:nth-child(3) {
-        color: color-mix(in srgb, #d5714b 58%, #f2efe8);
+        letter-spacing: 0.04em;
       }
 
       #video {
@@ -1013,13 +972,13 @@
           place-content: center;
           transition: .15s background ease-out;
           display: inline-grid;
-          color: rgba(255, 255, 255, 0.9);
+          color: var(--theme-surface-on-surface);
         }
 
         .menu-button:hover,
         .menu-button:focus-visible {
-          background: rgba(255, 255, 255, 0.08);
-          color: rgba(255, 255, 255, 0.96);
+          background: var(--theme-button-states-hovered);
+          color: var(--theme-surface-on-surface);
         }
 
         nav {
@@ -1033,11 +992,11 @@
         nav li {
           font-size: 1.85em;
           font-weight: 380;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+          border-bottom: 1px solid var(--theme-outline-variant);
         }
 
         nav li:first-child {
-          border-top: 1px solid rgba(255, 255, 255, 0.12);
+          border-top: 1px solid var(--theme-outline-variant);
         }
 
         nav a {
@@ -1051,12 +1010,12 @@
           inset: 0;
           top: 3.4rem;
           display: block;
-          background: #0b0c10;
+          background: var(--color-grey);
           overflow: auto;
         }
 
         .menu-checkbox:checked ~ nav a {
-          color: rgba(255, 255, 255, 0.92);
+          color: var(--theme-surface-on-surface);
         }
 
         .menu-checkbox:checked ~ .menu-button [data-show-when="closed"] {
@@ -1068,8 +1027,8 @@
         }
 
         .menu-checkbox:checked ~ .menu-button {
-          background: rgba(255, 255, 255, 0.14);
-          color: rgba(255, 255, 255, 0.96);
+          background: var(--theme-primary-primary);
+          color: var(--theme-primary-on-primary);
         }
 
         .header-actions {
@@ -1130,16 +1089,7 @@
         }
 
         #welcome .hero-command {
-          display: grid;
-          grid-template-columns: 1fr;
           margin-top: 0.52rem;
-        }
-
-        #welcome .hero-command-action {
-          width: 100%;
-          border-right: none;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-          min-height: 46px;
         }
 
         #welcome .hero-command-line {
@@ -1151,19 +1101,18 @@
           font-size: 0.84rem;
         }
 
-        #welcome .hero-platforms {
-          font-size: 0.93rem;
-          margin-top: 0.9rem;
+        #welcome .hero-cases {
+          font-size: 0.96rem;
         }
 
         #welcome .hero-platform-list {
           grid-template-columns: repeat(2, minmax(0, 1fr));
           row-gap: 0.8rem;
-          margin-top: 1.7rem;
+          margin-top: 1.35rem;
         }
 
         #welcome .hero-platform-list span {
-          font-size: clamp(1.85rem, 9vw, 2.35rem);
+          font-size: 0.84rem;
         }
 
         .scroll-grow-box {
@@ -1490,12 +1439,11 @@
           <li><a href="#developers">Platform <span class="material-symbols-outlined nav-caret" aria-hidden="true">expand_more</span></a></li>
           <li><a href="#beforeyougo">Solutions <span class="material-symbols-outlined nav-caret" aria-hidden="true">expand_more</span></a></li>
           <li><a href="#video">Pricing <span class="material-symbols-outlined nav-caret" aria-hidden="true">expand_more</span></a></li>
-          <li><a href="#who">Resources <span class="material-symbols-outlined nav-caret" aria-hidden="true">expand_more</span></a></li>
+          <li><a href="#who">Learn <span class="material-symbols-outlined nav-caret" aria-hidden="true">expand_more</span></a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
-        <a class="header-login" href="#video">Login</a>
         <button class="header-contact" type="button">Contact sales</button>
         <button class="header-try" type="button">Try Claude</button>
       </div>
@@ -1508,24 +1456,24 @@
       <a href="#product" class="hero-rail-right">Explore here <span class="material-symbols-outlined" aria-hidden="true">expand_more</span></a>
     </div>
     <div class="hero-shell">
-      <p class="hero-pill"><span class="hero-pill-dot">✶</span>Processing...</p>
-      <h1 class="hero-title">Built for <span class="hero-title-accent">›</span><span class="hero-title-word">builders</span></h1>
-      <p class="hero-sub">Work with Claude directly in your codebase. Build, debug, and ship from your terminal, IDE, Slack, or the web. Describe what you need, and Claude handles the rest.</p>
+      <p class="hero-pill"><span class="hero-pill-dot">○</span>Optimizing...</p>
+      <h1 class="hero-title">Built for <span class="hero-title-accent">›</span><span class="hero-title-word">programmers</span></h1>
+      <p class="hero-sub">Unleash Claude's raw power directly in your terminal. Search million-line codebases instantly. Turn hours-long workflows into a single command. Your tools. Your workflow. Your codebase, evolving at thought speed.</p>
+      <p class="hero-install-note">Install <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer">Node.js 18+</a>, then run:</p>
       <div class="hero-command">
-        <button class="hero-command-action" type="button">Get Claude Code <span class="material-symbols-outlined" aria-hidden="true">keyboard_arrow_down</span></button>
         <div class="hero-command-line">
-          <code id="hero-install-command"><span class="cmd">curl -fsSL</span> <span class="url">https://claude.ai/install.sh</span> <span class="pipe">|</span> <span class="bash">bash</span></code>
+          <code id="hero-install-command"><span class="cmd">npm install -g</span> <span class="url">@anthropic-ai/claude-code</span></code>
           <button class="hero-copy" type="button" aria-label="Copy command">
             <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
           </button>
         </div>
       </div>
-      <p class="hero-platforms">Or read the <a href="#product">documentation</a></p>
+      <p class="hero-platforms">Use Claude Code where you work</p>
       <div class="hero-platform-list" aria-label="Claude Code platforms">
-        <span>databricks</span>
-        <span>intercom</span>
-        <span>_zapier</span>
-        <span>ramp</span>
+        <span>Terminal</span>
+        <span>IDE</span>
+        <span>Slack</span>
+        <span>API</span>
       </div>
     </div>
   </section>
