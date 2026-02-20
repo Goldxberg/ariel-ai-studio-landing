@@ -51,27 +51,37 @@
     @layer tokens {
       :root {
         --color-black: #141413;
-        --color-grey: #f0efea;
+        --color-grey: #f0eee6;
         --color-orchre: #ebdbbc;
-        --color-white: #fafaf8;
-        --color-lightgrey: #a3a299;
+        --color-white: #faf9f5;
+        --color-lightgrey: #b0aea5;
+        --color-slate-medium: #3d3d3a;
+        --color-slate-light: #5e5d59;
+        --color-cloud-dark: #87867f;
+        --color-ivory-dark: #e8e6dc;
+        --color-border-light: #1414131a;
+        --color-border-light-hover: #14141333;
+        --color-border-dark: #faf9f51a;
+        --color-border-dark-hover: #faf9f533;
+        --color-accent: #d97757;
+        --color-accent-strong: #c6613f;
         --font-ui: "Styrene", "Helvetica Neue", "Segoe UI", sans-serif;
         --font-serif: "Copernicus", "Tiempos", "Iowan Old Style", serif;
 
         --section-tone-a: var(--color-black);
-        --section-tone-b: color-mix(in srgb, var(--color-black) 88%, var(--color-lightgrey));
+        --section-tone-b: var(--color-slate-medium);
         --surface-high: var(--color-white);
-        --surface-mid: color-mix(in srgb, var(--color-white) 70%, var(--color-lightgrey));
+        --surface-mid: var(--color-grey);
         --surface-low: var(--color-lightgrey);
-        --accent: var(--color-orchre);
-        --accent-ink: color-mix(in srgb, var(--color-orchre) 62%, var(--color-black));
+        --accent: var(--color-accent);
+        --accent-ink: var(--color-accent-strong);
         --button-primary-hover: var(--color-grey);
-        --command-surface: color-mix(in srgb, var(--color-black) 82%, var(--color-lightgrey));
+        --command-surface: var(--color-slate-medium);
         --command-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-        --command-url: color-mix(in srgb, var(--color-white) 84%, var(--color-lightgrey));
+        --command-url: var(--color-white);
         --command-chip-bg: var(--surface-high);
         --command-chip-fg: var(--section-tone-a);
-        --menu-overlay-bg: color-mix(in srgb, var(--section-tone-a) 95%, var(--section-tone-b));
+        --menu-overlay-bg: var(--color-black);
 
         --palette-0: var(--color-grey);
         --palette-10: color-mix(in srgb, var(--color-white) 80%, var(--color-grey));
@@ -85,23 +95,23 @@
 
         --theme-surface-surface: var(--section-tone-a);
         --theme-surface-on-surface: var(--surface-high);
-        --theme-surface-on-surface-variant: var(--surface-mid);
+        --theme-surface-on-surface-variant: var(--color-lightgrey);
         --theme-surface-surface-container: var(--section-tone-b);
-        --theme-surface-surface-container-high: color-mix(in srgb, var(--section-tone-b) 84%, var(--surface-high));
-        --theme-surface-surface-container-higher: color-mix(in srgb, var(--section-tone-b) 74%, var(--surface-high));
-        --theme-surface-surface-container-highest: color-mix(in srgb, var(--section-tone-b) 64%, var(--surface-high));
-        --theme-outline: color-mix(in srgb, var(--surface-high) 22%, transparent);
-        --theme-outline-variant: color-mix(in srgb, var(--surface-high) 12%, transparent);
+        --theme-surface-surface-container-high: var(--color-slate-light);
+        --theme-surface-surface-container-higher: var(--color-slate-light);
+        --theme-surface-surface-container-highest: var(--color-slate-light);
+        --theme-outline: var(--color-border-dark);
+        --theme-outline-variant: var(--color-border-dark);
 
         --theme-primary-primary: var(--surface-high);
         --theme-primary-on-primary: var(--section-tone-a);
-        --theme-tonal-tonal: color-mix(in srgb, var(--surface-high) 10%, transparent);
-        --theme-secondary-button: color-mix(in srgb, var(--surface-high) 8%, transparent);
-        --theme-button-secondary-hover: color-mix(in srgb, var(--surface-high) 15%, transparent);
-        --theme-button-secondary-inverse-hover: color-mix(in srgb, var(--surface-high) 25%, transparent);
-        --theme-button-states-primary-hovered: #ffffff;
-        --theme-button-states-hovered: color-mix(in srgb, var(--surface-high) 9%, transparent);
-        --theme-nav-button-hover: color-mix(in srgb, var(--surface-high) 12%, transparent);
+        --theme-tonal-tonal: var(--color-border-dark);
+        --theme-secondary-button: transparent;
+        --theme-button-secondary-hover: var(--color-white);
+        --theme-button-secondary-inverse-hover: var(--color-grey);
+        --theme-button-states-primary-hovered: var(--button-primary-hover);
+        --theme-button-states-hovered: var(--color-border-dark);
+        --theme-nav-button-hover: var(--color-border-dark);
 
         --ease-out: cubic-bezier(.23, 1, .32, 1);
         --page-max: 1320px;
@@ -109,42 +119,52 @@
 
       :root[data-theme="light"] {
         --color-black: #141413;
-        --color-grey: #f0efea;
+        --color-grey: #f0eee6;
         --color-orchre: #ebdbbc;
-        --color-white: #fafaf8;
-        --color-lightgrey: #a3a299;
+        --color-white: #faf9f5;
+        --color-lightgrey: #b0aea5;
+        --color-slate-medium: #3d3d3a;
+        --color-slate-light: #5e5d59;
+        --color-cloud-dark: #87867f;
+        --color-ivory-dark: #e8e6dc;
+        --color-border-light: #1414131a;
+        --color-border-light-hover: #14141333;
+        --color-border-dark: #faf9f51a;
+        --color-border-dark-hover: #faf9f533;
+        --color-accent: #d97757;
+        --color-accent-strong: #c6613f;
 
         --section-tone-a: var(--color-white);
         --section-tone-b: var(--color-grey);
         --surface-high: var(--color-black);
-        --surface-mid: color-mix(in srgb, var(--color-black) 68%, var(--color-lightgrey));
-        --surface-low: color-mix(in srgb, var(--color-black) 50%, var(--color-lightgrey));
+        --surface-mid: var(--color-slate-light);
+        --surface-low: var(--color-cloud-dark);
         --accent: var(--accent-ink);
-        --button-primary-hover: color-mix(in srgb, var(--color-black) 90%, #000000);
-        --command-surface: color-mix(in srgb, var(--color-grey) 74%, var(--color-white));
+        --button-primary-hover: var(--color-slate-medium);
+        --command-surface: var(--color-grey);
         --command-shadow: 0 8px 22px rgba(20, 20, 19, 0.08);
-        --command-url: color-mix(in srgb, var(--color-black) 82%, var(--color-lightgrey));
+        --command-url: var(--color-black);
         --command-chip-bg: var(--color-white);
-        --command-chip-fg: #141413;
-        --menu-overlay-bg: color-mix(in srgb, var(--section-tone-a) 96%, #ffffff);
+        --command-chip-fg: var(--color-black);
+        --menu-overlay-bg: var(--color-white);
 
         --theme-surface-surface: var(--section-tone-a);
         --theme-surface-on-surface: var(--surface-high);
         --theme-surface-on-surface-variant: var(--surface-mid);
         --theme-surface-surface-container: var(--section-tone-b);
-        --theme-surface-surface-container-high: color-mix(in srgb, var(--section-tone-b) 72%, var(--color-white));
-        --theme-surface-surface-container-higher: color-mix(in srgb, var(--section-tone-b) 54%, var(--color-white));
+        --theme-surface-surface-container-high: var(--color-ivory-dark);
+        --theme-surface-surface-container-higher: var(--color-ivory-dark);
         --theme-surface-surface-container-highest: var(--color-white);
-        --theme-outline: color-mix(in srgb, var(--surface-high) 16%, transparent);
-        --theme-outline-variant: color-mix(in srgb, var(--surface-high) 10%, transparent);
+        --theme-outline: var(--color-border-light);
+        --theme-outline-variant: var(--color-border-light);
         --theme-primary-primary: var(--surface-high);
         --theme-primary-on-primary: var(--section-tone-a);
-        --theme-secondary-button: color-mix(in srgb, var(--surface-high) 4%, transparent);
-        --theme-button-secondary-hover: color-mix(in srgb, var(--surface-high) 8%, transparent);
-        --theme-button-secondary-inverse-hover: color-mix(in srgb, var(--surface-high) 14%, transparent);
+        --theme-secondary-button: transparent;
+        --theme-button-secondary-hover: var(--color-black);
+        --theme-button-secondary-inverse-hover: var(--color-black);
         --theme-button-states-primary-hovered: var(--button-primary-hover);
-        --theme-button-states-hovered: color-mix(in srgb, var(--surface-high) 6%, transparent);
-        --theme-nav-button-hover: color-mix(in srgb, var(--surface-high) 8%, transparent);
+        --theme-button-states-hovered: var(--color-border-light);
+        --theme-nav-button-hover: var(--color-border-light);
       }
     }
 
