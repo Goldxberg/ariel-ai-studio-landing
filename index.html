@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -64,6 +64,13 @@
         --surface-mid: #c4bdae;
         --surface-low: #8f887b;
         --accent: #d67953;
+        --button-primary-hover: #fffaf2;
+        --command-surface: #151519;
+        --command-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        --command-url: color-mix(in srgb, var(--surface-high) 82%, #7fb7ff);
+        --command-chip-bg: var(--surface-high);
+        --command-chip-fg: var(--section-tone-a);
+        --menu-overlay-bg: color-mix(in srgb, var(--section-tone-a) 95%, var(--section-tone-b));
 
         --palette-0: var(--color-grey);
         --palette-10: color-mix(in srgb, var(--color-white) 80%, var(--color-grey));
@@ -97,6 +104,28 @@
 
         --ease-out: cubic-bezier(.23, 1, .32, 1);
         --page-max: 1320px;
+      }
+
+      :root[data-theme="light"] {
+        --color-black: #141413;
+        --color-grey: #f0efea;
+        --color-orchre: #ebdbbc;
+        --color-white: #fafaf8;
+        --color-lightgrey: #a3a299;
+
+        --section-tone-a: #f0efea;
+        --section-tone-b: #ece9e2;
+        --surface-high: #141413;
+        --surface-mid: #59554d;
+        --surface-low: #777267;
+        --accent: #c66b46;
+        --button-primary-hover: #090908;
+        --command-surface: #f3efe9;
+        --command-shadow: 0 8px 22px rgba(20, 20, 19, 0.08);
+        --command-url: #2f2c28;
+        --command-chip-bg: #fafaf8;
+        --command-chip-fg: #141413;
+        --menu-overlay-bg: color-mix(in srgb, var(--section-tone-a) 96%, #ffffff);
       }
     }
 
@@ -392,6 +421,32 @@
         color: var(--surface-high);
       }
 
+      .theme-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        min-height: 36px;
+        border-radius: 999px;
+        border: 1px solid color-mix(in srgb, var(--surface-high) 20%, transparent);
+        background: transparent;
+        color: var(--surface-mid);
+        padding: 0 0.82rem;
+        font-size: 0.82rem;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        cursor: pointer;
+      }
+
+      .theme-toggle:hover,
+      .theme-toggle:focus-visible {
+        color: var(--surface-high);
+        background: color-mix(in srgb, var(--surface-high) 7%, transparent);
+      }
+
+      .theme-toggle .material-symbols-outlined {
+        font-size: 16px;
+      }
+
       .header-contact,
       .header-try {
         display: inline-flex;
@@ -427,7 +482,7 @@
 
       .header-try:hover,
       .header-try:focus-visible {
-        background: #fffaf2;
+        background: var(--button-primary-hover);
       }
 
       main {
@@ -579,8 +634,8 @@
         align-items: center;
         border: 1px solid color-mix(in srgb, var(--surface-high) 14%, transparent);
         border-radius: 0.85rem;
-        background: #151519;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        background: var(--command-surface);
+        box-shadow: var(--command-shadow);
       }
 
       #welcome .hero-command-line {
@@ -596,8 +651,8 @@
       #welcome .hero-command-mode {
         min-height: 38px;
         border-radius: 0.78rem;
-        background: var(--surface-high);
-        color: var(--section-tone-a);
+        background: var(--command-chip-bg);
+        color: var(--command-chip-fg);
         border: 1px solid color-mix(in srgb, var(--surface-high) 46%, transparent);
         padding: 0 0.88rem;
         font-size: 0.96rem;
@@ -625,7 +680,7 @@
       }
 
       #welcome .hero-command-line .url {
-        color: color-mix(in srgb, var(--surface-high) 82%, #7fb7ff);
+        color: var(--command-url);
       }
 
       #welcome .hero-copy {
@@ -1033,6 +1088,16 @@
       }
 
       @media (width < 930px) {
+        .theme-toggle {
+          min-height: 2.45rem;
+          padding-inline: 0.72rem;
+          font-size: 0.78rem;
+        }
+
+        .theme-toggle .material-symbols-outlined {
+          font-size: 15px;
+        }
+
         .menu-button {
           cursor: pointer;
           width: 2.45rem;
@@ -1082,7 +1147,7 @@
           inset: 0;
           top: 4.45rem;
           display: block;
-          background: color-mix(in srgb, var(--section-tone-a) 95%, var(--section-tone-b));
+          background: var(--menu-overlay-bg);
           backdrop-filter: blur(10px);
           overflow: auto;
         }
@@ -1527,6 +1592,11 @@
         </ul>
       </nav>
 
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">
+        <span class="material-symbols-outlined" aria-hidden="true">contrast</span>
+        <span id="theme-toggle-label">Light mode</span>
+      </button>
+
       <div class="header-actions">
         <a class="header-login" href="#who">Login</a>
         <a class="header-contact" href="#beforeyougo">Contact sales</a>
@@ -1690,6 +1760,52 @@
   </footer>
 
   <script>
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleLabel = document.getElementById('theme-toggle-label');
+    const THEME_STORAGE_KEY = 'ariel-ai-studio-theme';
+
+    function applyTheme(theme) {
+      const nextTheme = theme === 'dark' ? 'dark' : 'light';
+      root.setAttribute('data-theme', nextTheme);
+
+      if (themeToggleLabel) {
+        themeToggleLabel.textContent = nextTheme === 'dark' ? 'Light mode' : 'Black mode';
+      }
+
+      if (themeToggle) {
+        themeToggle.setAttribute(
+          'aria-label',
+          nextTheme === 'dark' ? 'Switch to light mode' : 'Switch to black mode'
+        );
+      }
+    }
+
+    try {
+      const savedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+      if (savedTheme === 'dark' || savedTheme === 'light') {
+        applyTheme(savedTheme);
+      } else {
+        applyTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+      }
+    } catch {
+      applyTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+    }
+
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        applyTheme(nextTheme);
+
+        try {
+          window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+        } catch {
+          // Ignore persistence errors and keep runtime theme selection.
+        }
+      });
+    }
+
     const menuCheckbox = document.getElementById('menu-checkbox');
     document.querySelectorAll('nav a').forEach((link) => {
       link.addEventListener('click', () => {
