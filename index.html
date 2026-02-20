@@ -50,24 +50,25 @@
 
     @layer tokens {
       :root {
-        --color-black: #0a0a0c;
-        --color-grey: #111115;
-        --color-orchre: #d67953;
-        --color-white: #f1ede5;
-        --color-lightgrey: #9a9488;
+        --color-black: #141413;
+        --color-grey: #f0efea;
+        --color-orchre: #ebdbbc;
+        --color-white: #fafaf8;
+        --color-lightgrey: #a3a299;
         --font-ui: "Styrene", "Helvetica Neue", "Segoe UI", sans-serif;
         --font-serif: "Copernicus", "Tiempos", "Iowan Old Style", serif;
 
-        --section-tone-a: #09090b;
-        --section-tone-b: #111116;
-        --surface-high: #f1ede5;
-        --surface-mid: #c4bdae;
-        --surface-low: #8f887b;
-        --accent: #d67953;
-        --button-primary-hover: #fffaf2;
-        --command-surface: #151519;
+        --section-tone-a: var(--color-black);
+        --section-tone-b: color-mix(in srgb, var(--color-black) 88%, var(--color-lightgrey));
+        --surface-high: var(--color-white);
+        --surface-mid: color-mix(in srgb, var(--color-white) 70%, var(--color-lightgrey));
+        --surface-low: var(--color-lightgrey);
+        --accent: var(--color-orchre);
+        --accent-ink: color-mix(in srgb, var(--color-orchre) 62%, var(--color-black));
+        --button-primary-hover: var(--color-grey);
+        --command-surface: color-mix(in srgb, var(--color-black) 82%, var(--color-lightgrey));
         --command-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-        --command-url: color-mix(in srgb, var(--surface-high) 82%, #7fb7ff);
+        --command-url: color-mix(in srgb, var(--color-white) 84%, var(--color-lightgrey));
         --command-chip-bg: var(--surface-high);
         --command-chip-fg: var(--section-tone-a);
         --menu-overlay-bg: color-mix(in srgb, var(--section-tone-a) 95%, var(--section-tone-b));
@@ -85,12 +86,12 @@
         --theme-surface-surface: var(--section-tone-a);
         --theme-surface-on-surface: var(--surface-high);
         --theme-surface-on-surface-variant: var(--surface-mid);
-        --theme-surface-surface-container: color-mix(in srgb, var(--section-tone-a) 72%, var(--surface-high));
-        --theme-surface-surface-container-high: color-mix(in srgb, var(--section-tone-b) 78%, var(--surface-high));
-        --theme-surface-surface-container-higher: color-mix(in srgb, var(--section-tone-b) 70%, var(--surface-high));
-        --theme-surface-surface-container-highest: color-mix(in srgb, var(--section-tone-b) 62%, var(--surface-high));
-        --theme-outline: color-mix(in srgb, var(--surface-high) 24%, transparent);
-        --theme-outline-variant: color-mix(in srgb, var(--surface-high) 13%, transparent);
+        --theme-surface-surface-container: var(--section-tone-b);
+        --theme-surface-surface-container-high: color-mix(in srgb, var(--section-tone-b) 84%, var(--surface-high));
+        --theme-surface-surface-container-higher: color-mix(in srgb, var(--section-tone-b) 74%, var(--surface-high));
+        --theme-surface-surface-container-highest: color-mix(in srgb, var(--section-tone-b) 64%, var(--surface-high));
+        --theme-outline: color-mix(in srgb, var(--surface-high) 22%, transparent);
+        --theme-outline-variant: color-mix(in srgb, var(--surface-high) 12%, transparent);
 
         --theme-primary-primary: var(--surface-high);
         --theme-primary-on-primary: var(--section-tone-a);
@@ -113,19 +114,37 @@
         --color-white: #fafaf8;
         --color-lightgrey: #a3a299;
 
-        --section-tone-a: #f0efea;
-        --section-tone-b: #ece9e2;
-        --surface-high: #141413;
-        --surface-mid: #59554d;
-        --surface-low: #777267;
-        --accent: #c66b46;
-        --button-primary-hover: #090908;
-        --command-surface: #f3efe9;
+        --section-tone-a: var(--color-white);
+        --section-tone-b: var(--color-grey);
+        --surface-high: var(--color-black);
+        --surface-mid: color-mix(in srgb, var(--color-black) 68%, var(--color-lightgrey));
+        --surface-low: color-mix(in srgb, var(--color-black) 50%, var(--color-lightgrey));
+        --accent: var(--accent-ink);
+        --button-primary-hover: color-mix(in srgb, var(--color-black) 90%, #000000);
+        --command-surface: color-mix(in srgb, var(--color-grey) 74%, var(--color-white));
         --command-shadow: 0 8px 22px rgba(20, 20, 19, 0.08);
-        --command-url: #2f2c28;
-        --command-chip-bg: #fafaf8;
+        --command-url: color-mix(in srgb, var(--color-black) 82%, var(--color-lightgrey));
+        --command-chip-bg: var(--color-white);
         --command-chip-fg: #141413;
         --menu-overlay-bg: color-mix(in srgb, var(--section-tone-a) 96%, #ffffff);
+
+        --theme-surface-surface: var(--section-tone-a);
+        --theme-surface-on-surface: var(--surface-high);
+        --theme-surface-on-surface-variant: var(--surface-mid);
+        --theme-surface-surface-container: var(--section-tone-b);
+        --theme-surface-surface-container-high: color-mix(in srgb, var(--section-tone-b) 72%, var(--color-white));
+        --theme-surface-surface-container-higher: color-mix(in srgb, var(--section-tone-b) 54%, var(--color-white));
+        --theme-surface-surface-container-highest: var(--color-white);
+        --theme-outline: color-mix(in srgb, var(--surface-high) 16%, transparent);
+        --theme-outline-variant: color-mix(in srgb, var(--surface-high) 10%, transparent);
+        --theme-primary-primary: var(--surface-high);
+        --theme-primary-on-primary: var(--section-tone-a);
+        --theme-secondary-button: color-mix(in srgb, var(--surface-high) 4%, transparent);
+        --theme-button-secondary-hover: color-mix(in srgb, var(--surface-high) 8%, transparent);
+        --theme-button-secondary-inverse-hover: color-mix(in srgb, var(--surface-high) 14%, transparent);
+        --theme-button-states-primary-hovered: var(--button-primary-hover);
+        --theme-button-states-hovered: color-mix(in srgb, var(--surface-high) 6%, transparent);
+        --theme-nav-button-hover: color-mix(in srgb, var(--surface-high) 8%, transparent);
       }
     }
 
@@ -198,14 +217,15 @@
       button {
         background: var(--theme-primary-primary);
         color: var(--theme-primary-on-primary);
-        border: 0;
-        border-radius: 999px;
-        padding: 0.65em 1.5em;
+        border: 1px solid var(--theme-outline-variant);
+        border-radius: 12px;
+        padding: 0.95rem 1.72rem;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: 0.45rem;
-        font-size: 0.95rem;
+        font-size: 0.98rem;
+        font-weight: 500;
         cursor: pointer;
         transition: 0.15s background ease-out;
       }
@@ -238,7 +258,7 @@
       nav a {
         display: block;
         padding: 0.6em 1.1em;
-        border-radius: 999px;
+        border-radius: 12px;
         color: var(--theme-surface-on-surface-variant);
         text-decoration: none;
         transition: 0.15s color ease-out, 0.15s background ease-out;
@@ -263,11 +283,11 @@
       }
 
       .card {
-        border-radius: 2em;
+        border-radius: 20px;
       }
 
       .card.dark {
-        background: color-mix(in srgb, var(--section-tone-b) 88%, var(--surface-high));
+        background: var(--theme-surface-surface-container-high);
         color: var(--surface-high);
         border: 1px solid var(--theme-outline-variant);
       }
@@ -311,7 +331,7 @@
         top: 0;
         left: 0;
         right: 0;
-        background: color-mix(in srgb, var(--section-tone-a) 92%, var(--section-tone-b));
+        background: color-mix(in srgb, var(--theme-surface-surface) 94%, var(--theme-surface-surface-container));
         border-bottom: 1px solid var(--theme-outline-variant);
         backdrop-filter: blur(8px) saturate(110%);
         -webkit-backdrop-filter: blur(8px) saturate(110%);
@@ -453,7 +473,7 @@
         align-items: center;
         justify-content: center;
         min-height: 38px;
-        border-radius: 999px;
+        border-radius: 12px;
         padding: 0 1.08rem;
         font-size: 0.87rem;
         font-weight: 500;
@@ -495,13 +515,6 @@
         width: min(var(--page-max), calc(100% - 6rem));
         margin-inline: auto;
         grid-column: main;
-      }
-
-      main > section:nth-of-type(odd) {
-        background: var(--section-tone-b);
-      }
-
-      main > section:nth-of-type(even) {
         background: var(--section-tone-a);
       }
 
@@ -511,7 +524,7 @@
         display: grid;
         grid-template-rows: auto 1fr;
         padding: 0 0 clamp(2.8rem, 6.8vh, 4.8rem);
-        background: var(--section-tone-a);
+        background: var(--theme-surface-surface);
         border-bottom: 1px solid var(--theme-outline-variant);
         overflow: clip;
       }
@@ -579,7 +592,7 @@
         gap: 0.44rem;
         border-radius: 999px;
         border: 1px solid color-mix(in srgb, var(--surface-high) 18%, transparent);
-        background: color-mix(in srgb, var(--section-tone-b) 82%, var(--surface-high));
+        background: var(--theme-secondary-button);
         padding: 0.44rem 0.92rem;
         color: var(--accent);
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
@@ -740,11 +753,11 @@
         aspect-ratio: 16/7.8;
         margin-inline: auto;
         transform-origin: center center;
-        border-radius: 2em;
+        border-radius: 20px;
         border: 1px solid color-mix(in srgb, var(--surface-high) 14%, transparent);
         box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
         overflow: clip;
-        background: #0f0f13;
+        background: var(--color-black);
       }
 
       .featured-card {
@@ -794,8 +807,8 @@
       #features .feature {
         padding-bottom: 2rem;
         border: 1px solid var(--theme-outline-variant);
-        border-radius: 1.5rem;
-        background: color-mix(in srgb, var(--section-tone-b) 82%, var(--surface-high));
+        border-radius: 20px;
+        background: var(--theme-surface-surface-container-high);
         padding: 1.2rem;
       }
 
@@ -814,7 +827,7 @@
       }
 
       #features img {
-        border-radius: 2em;
+        border-radius: 20px;
         border: 1px solid var(--theme-outline-variant);
       }
 
@@ -917,7 +930,7 @@
       }
 
       .developer img {
-        border-radius: 2em;
+        border-radius: 20px;
       }
 
       .developer h3 {
@@ -980,9 +993,9 @@
         display: grid;
         place-content: center;
         gap: 1em;
-        border-radius: 2em;
+        border-radius: 20px;
         border: 1px solid var(--theme-outline-variant);
-        background: linear-gradient(180deg, color-mix(in srgb, var(--section-tone-b) 88%, var(--surface-high)), color-mix(in srgb, var(--section-tone-a) 88%, var(--surface-high)));
+        background: linear-gradient(180deg, var(--theme-surface-surface-container-high), var(--theme-surface-surface-container));
       }
 
       @media (width >= 930px) {
@@ -1531,7 +1544,7 @@
             right: 0;
             height: 100%;
             transform-origin: 0 100%;
-            background: color-mix(in srgb, var(--section-tone-b) 82%, var(--surface-high));
+            background: var(--theme-surface-surface-container-high);
             animation: fake-clip-it 500ms ease both;
             animation-trigger: --t play-forwards play-backwards;
           }
