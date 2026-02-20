@@ -50,13 +50,20 @@
 
     @layer tokens {
       :root {
-        --color-black: #141413;
-        --color-grey: #F0EFEA;
-        --color-orchre: #EBDBBC;
-        --color-white: #FAFAF8;
-        --color-lightgrey: #A3A299;
+        --color-black: #0a0a0c;
+        --color-grey: #111115;
+        --color-orchre: #d67953;
+        --color-white: #f1ede5;
+        --color-lightgrey: #9a9488;
         --font-ui: "Styrene", "Helvetica Neue", "Segoe UI", sans-serif;
         --font-serif: "Copernicus", "Tiempos", "Iowan Old Style", serif;
+
+        --section-tone-a: #09090b;
+        --section-tone-b: #111116;
+        --surface-high: #f1ede5;
+        --surface-mid: #c4bdae;
+        --surface-low: #8f887b;
+        --accent: #d67953;
 
         --palette-0: var(--color-grey);
         --palette-10: color-mix(in srgb, var(--color-white) 80%, var(--color-grey));
@@ -68,25 +75,25 @@
         --palette-900: color-mix(in srgb, var(--color-black) 86%, var(--color-lightgrey));
         --palette-1000: var(--color-black);
 
-        --theme-surface-surface: var(--palette-0);
-        --theme-surface-on-surface: var(--palette-1000);
-        --theme-surface-on-surface-variant: var(--palette-800);
-        --theme-surface-surface-container: var(--palette-10);
-        --theme-surface-surface-container-high: var(--palette-20);
-        --theme-surface-surface-container-higher: var(--palette-50);
-        --theme-surface-surface-container-highest: var(--palette-100);
-        --theme-outline: color-mix(in srgb, var(--color-black) 14%, transparent);
-        --theme-outline-variant: color-mix(in srgb, var(--color-black) 8%, transparent);
+        --theme-surface-surface: var(--section-tone-a);
+        --theme-surface-on-surface: var(--surface-high);
+        --theme-surface-on-surface-variant: var(--surface-mid);
+        --theme-surface-surface-container: color-mix(in srgb, var(--section-tone-a) 72%, var(--surface-high));
+        --theme-surface-surface-container-high: color-mix(in srgb, var(--section-tone-b) 78%, var(--surface-high));
+        --theme-surface-surface-container-higher: color-mix(in srgb, var(--section-tone-b) 70%, var(--surface-high));
+        --theme-surface-surface-container-highest: color-mix(in srgb, var(--section-tone-b) 62%, var(--surface-high));
+        --theme-outline: color-mix(in srgb, var(--surface-high) 24%, transparent);
+        --theme-outline-variant: color-mix(in srgb, var(--surface-high) 13%, transparent);
 
-        --theme-primary-primary: var(--color-black);
-        --theme-primary-on-primary: var(--color-white);
-        --theme-tonal-tonal: var(--theme-surface-surface-container);
-        --theme-secondary-button: color-mix(in srgb, var(--color-grey) 84%, var(--color-white));
-        --theme-button-secondary-hover: color-mix(in srgb, var(--color-orchre) 64%, var(--color-grey));
-        --theme-button-secondary-inverse-hover: color-mix(in srgb, var(--color-lightgrey) 55%, var(--color-black));
-        --theme-button-states-primary-hovered: color-mix(in srgb, var(--color-black) 90%, var(--color-lightgrey));
-        --theme-button-states-hovered: color-mix(in srgb, var(--color-black) 6%, transparent);
-        --theme-nav-button-hover: color-mix(in srgb, var(--color-orchre) 54%, var(--color-grey));
+        --theme-primary-primary: var(--surface-high);
+        --theme-primary-on-primary: var(--section-tone-a);
+        --theme-tonal-tonal: color-mix(in srgb, var(--surface-high) 10%, transparent);
+        --theme-secondary-button: color-mix(in srgb, var(--surface-high) 8%, transparent);
+        --theme-button-secondary-hover: color-mix(in srgb, var(--surface-high) 15%, transparent);
+        --theme-button-secondary-inverse-hover: color-mix(in srgb, var(--surface-high) 25%, transparent);
+        --theme-button-states-primary-hovered: #ffffff;
+        --theme-button-states-hovered: color-mix(in srgb, var(--surface-high) 9%, transparent);
+        --theme-nav-button-hover: color-mix(in srgb, var(--surface-high) 12%, transparent);
 
         --ease-out: cubic-bezier(.23, 1, .32, 1);
         --page-max: 1320px;
@@ -231,13 +238,14 @@
       }
 
       .card.dark {
-        background: var(--theme-primary-primary);
-        color: var(--theme-surface-surface);
+        background: color-mix(in srgb, var(--section-tone-b) 88%, var(--surface-high));
+        color: var(--surface-high);
+        border: 1px solid var(--theme-outline-variant);
       }
 
       .dark button {
-        color: var(--theme-surface-on-surface);
-        background: var(--theme-primary-on-primary);
+        color: var(--theme-primary-on-primary);
+        background: var(--theme-primary-primary);
         border: 1px solid var(--theme-outline-variant);
       }
 
@@ -247,8 +255,8 @@
       }
 
       .dark button.secondary {
-        color: var(--theme-surface-surface);
-        background: color-mix(in srgb, var(--color-black) 82%, var(--color-lightgrey));
+        color: var(--theme-surface-on-surface);
+        background: color-mix(in srgb, var(--surface-high) 12%, transparent);
       }
 
       .dark button.secondary:hover,
@@ -274,11 +282,11 @@
         top: 0;
         left: 0;
         right: 0;
-        background: color-mix(in srgb, var(--color-grey) 88%, var(--color-white));
-        border-bottom: 1px solid color-mix(in srgb, var(--color-black) 10%, transparent);
+        background: color-mix(in srgb, var(--section-tone-a) 92%, var(--section-tone-b));
+        border-bottom: 1px solid var(--theme-outline-variant);
         backdrop-filter: blur(8px) saturate(110%);
         -webkit-backdrop-filter: blur(8px) saturate(110%);
-        box-shadow: 0 1px 0 color-mix(in srgb, var(--color-black) 5%, transparent);
+        box-shadow: 0 1px 0 color-mix(in srgb, var(--surface-high) 6%, transparent);
         z-index: 30;
       }
 
@@ -307,7 +315,7 @@
         letter-spacing: -0.012em;
         text-transform: none;
         text-decoration: none;
-        color: #141413;
+        color: var(--surface-high);
         white-space: nowrap;
       }
 
@@ -316,12 +324,10 @@
       }
 
       .brand-mark {
-        width: 0.58rem;
-        height: 0.58rem;
-        border-radius: 999px;
-        background: #d46f47;
-        box-shadow: 0 0 0 3px rgba(212, 111, 71, 0.14);
-        flex: none;
+        color: var(--accent);
+        font-family: var(--font-ui);
+        font-size: 1.38rem;
+        line-height: 1;
       }
 
       .brand-text {
@@ -344,8 +350,8 @@
       header nav a {
         display: inline-flex;
         align-items: center;
-        gap: 0;
-        color: #57544d;
+        gap: 0.14rem;
+        color: var(--surface-mid);
         padding: 0.4rem 0.66rem;
         font-size: 0.89rem;
         font-weight: 500;
@@ -356,13 +362,15 @@
 
       header nav a:hover,
       header nav a:focus-visible {
-        color: #25231f;
-        background: color-mix(in srgb, var(--color-black) 4.5%, transparent);
-        border-color: color-mix(in srgb, var(--color-black) 9%, transparent);
+        color: var(--surface-high);
+        background: color-mix(in srgb, var(--surface-high) 8%, transparent);
+        border-color: var(--theme-outline-variant);
       }
 
       .nav-caret {
-        display: none;
+        display: inline-block;
+        font-size: 15px;
+        opacity: 0.65;
       }
 
       .header-actions {
@@ -370,6 +378,18 @@
         display: inline-flex;
         align-items: center;
         gap: 0.58rem;
+      }
+
+      .header-login {
+        color: var(--surface-mid);
+        text-decoration: none;
+        font-size: 0.89rem;
+        padding: 0.35rem 0.2rem;
+      }
+
+      .header-login:hover,
+      .header-login:focus-visible {
+        color: var(--surface-high);
       }
 
       .header-contact,
@@ -389,25 +409,25 @@
 
       .header-contact {
         background: transparent;
-        color: #2f2d29;
-        border: 1px solid color-mix(in srgb, var(--color-black) 13%, transparent);
+        color: var(--surface-high);
+        border: 1px solid color-mix(in srgb, var(--surface-high) 22%, transparent);
       }
 
       .header-contact:hover,
       .header-contact:focus-visible {
-        background: color-mix(in srgb, var(--color-black) 6%, transparent);
-        border-color: color-mix(in srgb, var(--color-black) 20%, transparent);
+        background: color-mix(in srgb, var(--surface-high) 7%, transparent);
+        border-color: color-mix(in srgb, var(--surface-high) 34%, transparent);
       }
 
       .header-try {
-        background: #181716;
-        color: #f7f5ef;
-        border: 1px solid #181716;
+        background: var(--surface-high);
+        color: var(--section-tone-a);
+        border: 1px solid color-mix(in srgb, var(--surface-high) 55%, transparent);
       }
 
       .header-try:hover,
       .header-try:focus-visible {
-        background: #090908;
+        background: #fffaf2;
       }
 
       main {
@@ -422,13 +442,21 @@
         grid-column: main;
       }
 
+      main > section:nth-of-type(odd) {
+        background: var(--section-tone-b);
+      }
+
+      main > section:nth-of-type(even) {
+        background: var(--section-tone-a);
+      }
+
       #welcome {
         min-height: min(92dvh, 920px);
         position: relative;
         display: grid;
         grid-template-rows: auto 1fr;
         padding: 0 0 clamp(2.8rem, 6.8vh, 4.8rem);
-        background: var(--color-grey);
+        background: var(--section-tone-a);
         border-bottom: 1px solid var(--theme-outline-variant);
         overflow: clip;
       }
@@ -451,7 +479,7 @@
         padding: 0 clamp(1rem, 2.2vw, 1.65rem);
         border-top: 1px solid var(--theme-outline-variant);
         border-bottom: 1px solid var(--theme-outline-variant);
-        color: #737066;
+        color: var(--surface-low);
       }
 
       #welcome .hero-rail-left {
@@ -460,7 +488,7 @@
       }
 
       #welcome .hero-rail-left strong {
-        color: #4a4741;
+        color: var(--surface-high);
         font-weight: 500;
       }
 
@@ -469,13 +497,13 @@
         align-items: center;
         gap: 0.12rem;
         text-decoration: none;
-        color: #7a766d;
+        color: var(--surface-mid);
         font-size: 0.86rem;
       }
 
       #welcome .hero-rail-right:hover,
       #welcome .hero-rail-right:focus-visible {
-        color: #3f3c37;
+        color: var(--surface-high);
       }
 
       #welcome .hero-shell {
@@ -495,10 +523,10 @@
         align-items: center;
         gap: 0.44rem;
         border-radius: 999px;
-        border: 1px solid color-mix(in srgb, var(--color-black) 12%, transparent);
-        background: #f5f1eb;
+        border: 1px solid color-mix(in srgb, var(--surface-high) 18%, transparent);
+        background: color-mix(in srgb, var(--section-tone-b) 82%, var(--surface-high));
         padding: 0.44rem 0.92rem;
-        color: #c66b46;
+        color: var(--accent);
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
         font-size: 0.82rem;
       }
@@ -514,34 +542,34 @@
         line-height: 0.98;
         letter-spacing: -0.03em;
         font-weight: 500;
-        color: var(--color-black);
+        color: var(--surface-high);
       }
 
       #welcome .hero-title-accent {
-        color: #c66b46;
+        color: var(--accent);
       }
 
       #welcome .hero-title-word {
-        color: #c66b46;
+        color: var(--accent);
         font-style: normal;
       }
 
       #welcome .hero-sub {
         margin: 1.5rem 0 0;
         max-width: 44ch;
-        color: #6e6a63;
+        color: color-mix(in srgb, var(--surface-high) 62%, var(--surface-low));
         font-size: clamp(1rem, 1.72vw, 1.13rem);
         line-height: 1.45;
       }
 
       #welcome .hero-install-note {
         margin: 1.8rem 0 0;
-        color: #838077;
+        color: var(--surface-low);
         font-size: 0.97rem;
       }
 
       #welcome .hero-install-note a {
-        color: #5c5850;
+        color: var(--surface-mid);
       }
 
       #welcome .hero-command {
@@ -549,68 +577,86 @@
         width: min(100%, 560px);
         display: flex;
         align-items: center;
-        border: 1px solid color-mix(in srgb, var(--color-black) 14%, transparent);
+        border: 1px solid color-mix(in srgb, var(--surface-high) 14%, transparent);
         border-radius: 0.85rem;
-        background: #f3efe9;
-        box-shadow: 0 8px 22px rgba(20, 20, 19, 0.08);
+        background: #151519;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
       }
 
       #welcome .hero-command-line {
         flex: 1;
         min-height: 50px;
-        padding: 0 0.74rem 0 0.9rem;
+        padding: 0.45rem 0.74rem 0.45rem 0.48rem;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 0.6rem;
+        justify-content: flex-start;
+        gap: 0.72rem;
+      }
+
+      #welcome .hero-command-mode {
+        min-height: 38px;
+        border-radius: 0.78rem;
+        background: var(--surface-high);
+        color: var(--section-tone-a);
+        border: 1px solid color-mix(in srgb, var(--surface-high) 46%, transparent);
+        padding: 0 0.88rem;
+        font-size: 0.96rem;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      #welcome .hero-command-mode .material-symbols-outlined {
+        font-size: 17px;
       }
 
       #welcome .hero-command-line code {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-        font-size: 1.02rem;
-        color: #2d2b28;
+        flex: 1;
+        min-width: 0;
+        font-size: 0.98rem;
+        color: var(--surface-high);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
 
       #welcome .hero-command-line .cmd {
-        color: #d46f47;
+        color: var(--accent);
       }
 
       #welcome .hero-command-line .url {
-        color: #2f2c28;
+        color: color-mix(in srgb, var(--surface-high) 82%, #7fb7ff);
       }
 
       #welcome .hero-copy {
         border: none;
         border-radius: 0.45rem;
-        min-width: 30px;
-        min-height: 30px;
+        min-width: 34px;
+        min-height: 34px;
         padding: 0;
         background: transparent;
-        color: color-mix(in srgb, var(--color-black) 54%, transparent);
+        color: color-mix(in srgb, var(--surface-high) 64%, transparent);
       }
 
       #welcome .hero-copy:hover,
       #welcome .hero-copy:focus-visible {
-        color: color-mix(in srgb, var(--color-black) 86%, transparent);
-        background: color-mix(in srgb, var(--color-black) 8%, transparent);
+        color: var(--surface-high);
+        background: color-mix(in srgb, var(--surface-high) 10%, transparent);
       }
 
       #welcome .hero-cases {
         margin: 1.1rem 0 0;
-        color: #7c786f;
+        color: var(--surface-low);
         font-size: 0.98rem;
       }
 
       #welcome .hero-cases a {
-        color: #5f5a53;
+        color: var(--surface-mid);
       }
 
       #welcome .hero-platforms {
         margin-top: clamp(3rem, 8vh, 4.3rem);
-        color: #b7b2a8;
+        color: color-mix(in srgb, var(--surface-high) 42%, var(--surface-low));
         font-size: 0.95rem;
       }
 
@@ -623,7 +669,7 @@
       }
 
       #welcome .hero-platform-list span {
-        color: #c5c0b8;
+        color: var(--surface-mid);
         font-size: 0.95rem;
         font-weight: 600;
         letter-spacing: 0.04em;
@@ -631,6 +677,7 @@
 
       #video {
         padding-block: clamp(0.4rem, 1.4vh, 1.2rem) 2.2rem;
+        border-top: 1px solid var(--theme-outline-variant);
       }
 
       .scroll-grow-box {
@@ -639,10 +686,10 @@
         margin-inline: auto;
         transform-origin: center center;
         border-radius: 2em;
-        border: 1px solid color-mix(in srgb, var(--color-black) 20%, transparent);
-        box-shadow: 0 14px 40px rgba(20, 20, 19, 0.13);
+        border: 1px solid color-mix(in srgb, var(--surface-high) 14%, transparent);
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
         overflow: clip;
-        background: #080808;
+        background: #0f0f13;
       }
 
       .featured-card {
@@ -676,6 +723,7 @@
       #product {
         display: grid;
         grid-template-columns: subgrid;
+        border-top: 1px solid var(--theme-outline-variant);
       }
 
       #product > * {
@@ -692,7 +740,7 @@
         padding-bottom: 2rem;
         border: 1px solid var(--theme-outline-variant);
         border-radius: 1.5rem;
-        background: var(--color-white);
+        background: color-mix(in srgb, var(--section-tone-b) 82%, var(--surface-high));
         padding: 1.2rem;
       }
 
@@ -707,6 +755,7 @@
       #features p {
         font-weight: 350;
         line-height: 1.35;
+        color: var(--surface-mid);
       }
 
       #features img {
@@ -767,6 +816,7 @@
         line-height: 1.35;
         font-weight: 350;
         padding: 0.5rem 0;
+        color: var(--surface-mid);
       }
 
       @media (width >= 930px) {
@@ -828,6 +878,7 @@
         text-wrap: pretty;
         letter-spacing: 0.02rem;
         font-weight: 350;
+        color: var(--surface-mid);
       }
 
       .developer a {
@@ -858,6 +909,7 @@
         align-items: center;
         text-align: center;
         gap: 1rem;
+        border-top: 1px solid var(--theme-outline-variant);
       }
 
       @media (width >= 930px) {
@@ -875,7 +927,7 @@
         gap: 1em;
         border-radius: 2em;
         border: 1px solid var(--theme-outline-variant);
-        background: linear-gradient(180deg, var(--color-grey), var(--color-white));
+        background: linear-gradient(180deg, color-mix(in srgb, var(--section-tone-b) 88%, var(--surface-high)), color-mix(in srgb, var(--section-tone-a) 88%, var(--surface-high)));
       }
 
       @media (width >= 930px) {
@@ -900,6 +952,7 @@
         display: grid;
         grid-template-columns: subgrid;
         height: min-content;
+        border-top: 1px solid var(--theme-outline-variant);
       }
 
       #beforeyougo > * {
@@ -917,7 +970,7 @@
       }
 
       #beforeyougo p {
-        color: var(--theme-surface-surface);
+        color: var(--surface-high);
         font-size: clamp(2rem, 5vw, 4rem);
         text-wrap: pretty;
         margin: 0;
@@ -989,14 +1042,14 @@
           place-content: center;
           transition: .15s background ease-out;
           display: inline-grid;
-          color: #25231f;
-          border: 1px solid color-mix(in srgb, var(--color-black) 12%, transparent);
+          color: var(--surface-high);
+          border: 1px solid color-mix(in srgb, var(--surface-high) 18%, transparent);
         }
 
         .menu-button:hover,
         .menu-button:focus-visible {
-          background: color-mix(in srgb, var(--color-black) 6%, transparent);
-          color: #141413;
+          background: color-mix(in srgb, var(--surface-high) 10%, transparent);
+          color: var(--surface-high);
         }
 
         nav {
@@ -1029,7 +1082,7 @@
           inset: 0;
           top: 4.45rem;
           display: block;
-          background: color-mix(in srgb, var(--color-grey) 96%, var(--color-white));
+          background: color-mix(in srgb, var(--section-tone-a) 95%, var(--section-tone-b));
           backdrop-filter: blur(10px);
           overflow: auto;
         }
@@ -1047,9 +1100,9 @@
         }
 
         .menu-checkbox:checked ~ .menu-button {
-          background: #141413;
-          color: #fafaf8;
-          border-color: #141413;
+          background: var(--surface-high);
+          color: var(--section-tone-a);
+          border-color: var(--surface-high);
         }
 
         .header-actions {
@@ -1116,6 +1169,16 @@
         #welcome .hero-command-line {
           min-height: 44px;
           padding-inline: 0.72rem;
+        }
+
+        #welcome .hero-command-mode {
+          min-height: 32px;
+          font-size: 0.8rem;
+          padding-inline: 0.62rem;
+        }
+
+        #welcome .hero-command-mode .material-symbols-outlined {
+          font-size: 14px;
         }
 
         #welcome .hero-command-line code {
@@ -1403,7 +1466,7 @@
             right: 0;
             height: 100%;
             transform-origin: 0 100%;
-            background: var(--color-white);
+            background: color-mix(in srgb, var(--section-tone-b) 82%, var(--surface-high));
             animation: fake-clip-it 500ms ease both;
             animation-trigger: --t play-forwards play-backwards;
           }
@@ -1442,9 +1505,9 @@
 <body>
   <div class="header-wrapper">
     <header>
-      <a href="#welcome" class="brand" aria-label="Ariel AI Studio">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span class="brand-text">Ariel AI Studio</span>
+      <a href="#welcome" class="brand" aria-label="Claude">
+        <span class="brand-mark" aria-hidden="true">✶</span>
+        <span class="brand-text">Claude</span>
       </a>
 
       <input class="menu-checkbox" type="checkbox" id="menu-checkbox" />
@@ -1456,17 +1519,18 @@
 
       <nav aria-label="Primary">
         <ul>
-          <li><a href="#product">Product</a></li>
-          <li><a href="#developers">Platform</a></li>
-          <li><a href="#beforeyougo">Solutions</a></li>
-          <li><a href="#video">Pricing</a></li>
-          <li><a href="#who">Company</a></li>
+          <li><a href="#product">Meet Claude <span class="material-symbols-outlined nav-caret" aria-hidden="true">expand_more</span></a></li>
+          <li><a href="#developers">Platform <span class="material-symbols-outlined nav-caret" aria-hidden="true">expand_more</span></a></li>
+          <li><a href="#beforeyougo">Solutions <span class="material-symbols-outlined nav-caret" aria-hidden="true">expand_more</span></a></li>
+          <li><a href="#video">Pricing <span class="material-symbols-outlined nav-caret" aria-hidden="true">expand_more</span></a></li>
+          <li><a href="#who">Resources <span class="material-symbols-outlined nav-caret" aria-hidden="true">expand_more</span></a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
+        <a class="header-login" href="#who">Login</a>
         <a class="header-contact" href="#beforeyougo">Contact sales</a>
-        <a class="header-try" href="#welcome">Try Ariel</a>
+        <a class="header-try" href="#welcome">Try Claude</a>
       </div>
     </header>
   </div>
@@ -1477,13 +1541,14 @@
       <a href="#product" class="hero-rail-right">Explore here <span class="material-symbols-outlined" aria-hidden="true">expand_more</span></a>
     </div>
     <div class="hero-shell">
-      <p class="hero-pill"><span class="hero-pill-dot">○</span>Optimizing...</p>
-      <h1 class="hero-title">Built for <span class="hero-title-accent">›</span><span class="hero-title-word">programmers</span></h1>
-      <p class="hero-sub">Unleash Claude's raw power directly in your terminal. Search million-line codebases instantly. Turn hours-long workflows into a single command. Your tools. Your workflow. Your codebase, evolving at thought speed.</p>
-      <p class="hero-install-note">Install <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer">Node.js 18+</a>, then run:</p>
+      <p class="hero-pill"><span class="hero-pill-dot">●</span>Iterating...</p>
+      <h1 class="hero-title">Built for <span class="hero-title-accent">›</span><span class="hero-title-word">inventors</span></h1>
+      <p class="hero-sub">Work with Claude directly in your codebase. Build, debug, and ship from your terminal, IDE, Slack, or the web. Describe what you need, and Claude handles the rest.</p>
+      <p class="hero-install-note">Install in one command:</p>
       <div class="hero-command">
         <div class="hero-command-line">
-          <code id="hero-install-command"><span class="cmd">npm install -g</span> <span class="url">@anthropic-ai/claude-code</span></code>
+          <button class="hero-command-mode" type="button">Get Claude Code <span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+          <code id="hero-install-command"><span class="cmd">curl -fsSL</span> <span class="url">https://claude.ai/install.sh | bash</span></code>
           <button class="hero-copy" type="button" aria-label="Copy command">
             <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
           </button>
@@ -1491,10 +1556,10 @@
       </div>
       <p class="hero-platforms">Use Claude Code where you work</p>
       <div class="hero-platform-list" aria-label="Claude Code platforms">
-        <span>Terminal</span>
-        <span>IDE</span>
-        <span>Slack</span>
-        <span>API</span>
+        <span>StubHub</span>
+        <span>Figma</span>
+        <span>Rakuten</span>
+        <span>Asana</span>
       </div>
     </div>
   </section>
