@@ -78,6 +78,7 @@
         --hero-fade: linear-gradient(180deg, color-mix(in srgb, var(--section-tone-a) 10%, transparent), transparent 36%);
         --section-gap-y: clamp(3.2rem, 8vh, 6rem);
         --text-prose: color-mix(in srgb, var(--surface-high) 62%, var(--surface-low));
+        --page-bg: var(--section-tone-a);
 
         --palette-0: var(--color-grey);
         --palette-10: color-mix(in srgb, var(--color-white) 80%, var(--color-grey));
@@ -140,6 +141,7 @@
         --hero-fade: linear-gradient(180deg, color-mix(in srgb, #ffffff 62%, transparent), transparent 45%);
         --section-gap-y: clamp(3rem, 7.3vh, 5.2rem);
         --text-prose: #666157;
+        --page-bg: var(--section-tone-a);
       }
     }
 
@@ -510,14 +512,7 @@
         width: min(var(--page-max), calc(100% - 6rem));
         margin-inline: auto;
         grid-column: main;
-      }
-
-      main > section:nth-of-type(odd) {
-        background: var(--section-tone-b);
-      }
-
-      main > section:nth-of-type(even) {
-        background: var(--section-tone-a);
+        background: var(--page-bg);
       }
 
       #welcome {
@@ -526,29 +521,17 @@
         display: grid;
         grid-template-rows: auto 1fr;
         padding: 0 0 clamp(3.6rem, 8vh, 5.6rem);
-        background: var(--section-tone-a);
+        background: var(--page-bg);
         border-bottom: 1px solid var(--theme-outline-variant);
         overflow: clip;
       }
 
       #welcome::before {
-        content: "";
-        position: absolute;
-        inset: -12% 12% auto;
-        height: 58%;
-        border-radius: 50%;
-        background: radial-gradient(circle at 50% 0%, var(--hero-glow), transparent 65%);
-        pointer-events: none;
-        z-index: 0;
+        content: none;
       }
 
       #welcome::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: var(--hero-fade);
-        pointer-events: none;
-        z-index: 0;
+        content: none;
       }
 
       #welcome .hero-rail {
