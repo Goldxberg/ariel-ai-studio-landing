@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ariel AI Studio</title>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: "Styrene";
@@ -51,31 +50,27 @@
 
     @layer tokens {
       :root {
-        --color-black: #141413;
-        --color-grey: #f0efea;
-        --color-orchre: #ebdbbc;
-        --color-white: #fafaf8;
-        --color-lightgrey: #a3a299;
-        --font-ui: "Space Grotesk", "Microsoft JhengHei", "Noto Sans TC", "Segoe UI", sans-serif;
-        --font-serif: "Fraunces", "Noto Serif TC", "Iowan Old Style", serif;
+        --color-black: #0a0a0c;
+        --color-grey: #111115;
+        --color-orchre: #d67953;
+        --color-white: #f1ede5;
+        --color-lightgrey: #9a9488;
+        --font-ui: "Styrene", "Helvetica Neue", "Segoe UI", sans-serif;
+        --font-serif: "Copernicus", "Tiempos", "Iowan Old Style", serif;
 
-        --section-tone-a: var(--color-black);
-        --section-tone-b: var(--color-black);
-        --page-bg: var(--color-black);
-        --surface-high: var(--color-white);
-        --surface-mid: var(--color-lightgrey);
-        --surface-low: var(--color-lightgrey);
-        --accent: var(--color-orchre);
-        --button-primary-hover: var(--color-grey);
-        --command-surface: color-mix(in srgb, var(--color-black) 88%, var(--color-lightgrey));
+        --section-tone-a: #09090b;
+        --section-tone-b: #111116;
+        --surface-high: #f1ede5;
+        --surface-mid: #c4bdae;
+        --surface-low: #8f887b;
+        --accent: #d67953;
+        --button-primary-hover: #fffaf2;
+        --command-surface: #151519;
         --command-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-        --command-url: var(--color-grey);
-        --command-chip-bg: var(--color-white);
-        --command-chip-fg: var(--color-black);
-        --menu-overlay-bg: var(--color-black);
-        --card-surface: color-mix(in srgb, var(--color-black) 92%, var(--color-lightgrey));
-        --card-surface-hover: color-mix(in srgb, var(--color-black) 88%, var(--color-lightgrey));
-        --card-border: color-mix(in srgb, var(--color-lightgrey) 40%, transparent);
+        --command-url: color-mix(in srgb, var(--surface-high) 82%, #7fb7ff);
+        --command-chip-bg: var(--surface-high);
+        --command-chip-fg: var(--section-tone-a);
+        --menu-overlay-bg: color-mix(in srgb, var(--section-tone-a) 95%, var(--section-tone-b));
 
         --palette-0: var(--color-grey);
         --palette-10: color-mix(in srgb, var(--color-white) 80%, var(--color-grey));
@@ -87,7 +82,7 @@
         --palette-900: color-mix(in srgb, var(--color-black) 86%, var(--color-lightgrey));
         --palette-1000: var(--color-black);
 
-        --theme-surface-surface: var(--page-bg);
+        --theme-surface-surface: var(--section-tone-a);
         --theme-surface-on-surface: var(--surface-high);
         --theme-surface-on-surface-variant: var(--surface-mid);
         --theme-surface-surface-container: color-mix(in srgb, var(--section-tone-a) 72%, var(--surface-high));
@@ -98,12 +93,12 @@
         --theme-outline-variant: color-mix(in srgb, var(--surface-high) 13%, transparent);
 
         --theme-primary-primary: var(--surface-high);
-        --theme-primary-on-primary: var(--color-black);
+        --theme-primary-on-primary: var(--section-tone-a);
         --theme-tonal-tonal: color-mix(in srgb, var(--surface-high) 10%, transparent);
-        --theme-secondary-button: color-mix(in srgb, var(--surface-high) 10%, transparent);
-        --theme-button-secondary-hover: color-mix(in srgb, var(--surface-high) 18%, transparent);
+        --theme-secondary-button: color-mix(in srgb, var(--surface-high) 8%, transparent);
+        --theme-button-secondary-hover: color-mix(in srgb, var(--surface-high) 15%, transparent);
         --theme-button-secondary-inverse-hover: color-mix(in srgb, var(--surface-high) 25%, transparent);
-        --theme-button-states-primary-hovered: var(--color-grey);
+        --theme-button-states-primary-hovered: #ffffff;
         --theme-button-states-hovered: color-mix(in srgb, var(--surface-high) 9%, transparent);
         --theme-nav-button-hover: color-mix(in srgb, var(--surface-high) 12%, transparent);
 
@@ -118,37 +113,19 @@
         --color-white: #fafaf8;
         --color-lightgrey: #a3a299;
 
-        --section-tone-a: var(--color-grey);
-        --section-tone-b: var(--color-grey);
-        --page-bg: var(--color-grey);
+        --section-tone-a: #f0efea;
+        --section-tone-b: #ece9e2;
         --surface-high: #141413;
-        --surface-mid: color-mix(in srgb, var(--color-black) 62%, var(--color-lightgrey));
-        --surface-low: var(--color-lightgrey);
-        --accent: var(--color-orchre);
-        --button-primary-hover: color-mix(in srgb, var(--color-black) 90%, var(--color-lightgrey));
-        --command-surface: var(--color-white);
+        --surface-mid: #59554d;
+        --surface-low: #777267;
+        --accent: #c66b46;
+        --button-primary-hover: #090908;
+        --command-surface: #f3efe9;
         --command-shadow: 0 8px 22px rgba(20, 20, 19, 0.08);
-        --command-url: var(--color-black);
-        --command-chip-bg: var(--color-white);
-        --command-chip-fg: var(--color-black);
-        --menu-overlay-bg: var(--color-grey);
-        --card-surface: var(--color-white);
-        --card-surface-hover: var(--color-orchre);
-        --card-border: color-mix(in srgb, var(--color-black) 12%, transparent);
-
-        --theme-surface-surface: var(--page-bg);
-        --theme-surface-on-surface: var(--surface-high);
-        --theme-surface-on-surface-variant: var(--surface-mid);
-        --theme-outline: color-mix(in srgb, var(--color-black) 14%, transparent);
-        --theme-outline-variant: color-mix(in srgb, var(--color-black) 8%, transparent);
-        --theme-primary-primary: var(--color-black);
-        --theme-primary-on-primary: var(--color-white);
-        --theme-secondary-button: var(--color-white);
-        --theme-button-secondary-hover: var(--color-orchre);
-        --theme-button-secondary-inverse-hover: color-mix(in srgb, var(--color-black) 84%, var(--color-lightgrey));
-        --theme-button-states-primary-hovered: color-mix(in srgb, var(--color-black) 90%, var(--color-lightgrey));
-        --theme-button-states-hovered: color-mix(in srgb, var(--color-black) 6%, transparent);
-        --theme-nav-button-hover: color-mix(in srgb, var(--color-orchre) 54%, var(--color-grey));
+        --command-url: #2f2c28;
+        --command-chip-bg: #fafaf8;
+        --command-chip-fg: #141413;
+        --menu-overlay-bg: color-mix(in srgb, var(--section-tone-a) 96%, #ffffff);
       }
     }
 
@@ -203,43 +180,17 @@
         justify-items: center;
       }
 
-      h1,
-      h2,
-      h3,
-      h4 {
+      h2 {
+        font-size: clamp(34px, 4.2vw, 62px);
         font-family: var(--font-serif);
         font-weight: 500;
-        color: var(--theme-surface-on-surface);
-      }
-
-      h1 {
-        font-size: clamp(3rem, 7vw, 5.5rem);
-        line-height: 1.02;
+        line-height: 1.03;
         letter-spacing: -0.02em;
-      }
-
-      h2 {
-        font-size: clamp(2rem, 4vw, 2.75rem);
-        line-height: 1.08;
-        letter-spacing: -0.015em;
         margin: 0.5rem 0;
-      }
-
-      h3 {
-        font-size: clamp(1.6rem, 2.8vw, 2.25rem);
-        line-height: 1.12;
-      }
-
-      h4 {
-        font-size: clamp(1.2rem, 1.9vw, 1.25rem);
-        line-height: 1.2;
       }
 
       p {
         color: var(--theme-surface-on-surface-variant);
-        font-family: var(--font-serif);
-        font-size: 1rem;
-        line-height: 1.45;
       }
     }
 
@@ -247,15 +198,14 @@
       button {
         background: var(--theme-primary-primary);
         color: var(--theme-primary-on-primary);
-        border: 0.5px solid color-mix(in srgb, var(--theme-surface-on-surface) 18%, transparent);
-        border-radius: 12px;
-        padding: 16px 48px;
+        border: 0;
+        border-radius: 999px;
+        padding: 0.65em 1.5em;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: 0.45rem;
-        font-size: 1rem;
-        font-weight: 400;
+        font-size: 0.95rem;
         cursor: pointer;
         transition: 0.15s background ease-out;
       }
@@ -288,7 +238,7 @@
       nav a {
         display: block;
         padding: 0.6em 1.1em;
-        border-radius: 12px;
+        border-radius: 999px;
         color: var(--theme-surface-on-surface-variant);
         text-decoration: none;
         transition: 0.15s color ease-out, 0.15s background ease-out;
@@ -313,7 +263,7 @@
       }
 
       .card {
-        border-radius: 20px;
+        border-radius: 2em;
       }
 
       .card.dark {
@@ -361,7 +311,7 @@
         top: 0;
         left: 0;
         right: 0;
-        background: var(--page-bg);
+        background: color-mix(in srgb, var(--section-tone-a) 92%, var(--section-tone-b));
         border-bottom: 1px solid var(--theme-outline-variant);
         backdrop-filter: blur(8px) saturate(110%);
         -webkit-backdrop-filter: blur(8px) saturate(110%);
@@ -435,7 +385,7 @@
         font-size: 0.89rem;
         font-weight: 500;
         letter-spacing: 0.01em;
-        border-radius: 12px;
+        border-radius: 0.5rem;
         border: 1px solid transparent;
       }
 
@@ -476,7 +426,7 @@
         align-items: center;
         gap: 0.35rem;
         min-height: 36px;
-        border-radius: 12px;
+        border-radius: 999px;
         border: 1px solid color-mix(in srgb, var(--surface-high) 20%, transparent);
         background: transparent;
         color: var(--surface-mid);
@@ -503,7 +453,7 @@
         align-items: center;
         justify-content: center;
         min-height: 38px;
-        border-radius: 12px;
+        border-radius: 999px;
         padding: 0 1.08rem;
         font-size: 0.87rem;
         font-weight: 500;
@@ -545,7 +495,14 @@
         width: min(var(--page-max), calc(100% - 6rem));
         margin-inline: auto;
         grid-column: main;
-        background: var(--page-bg);
+      }
+
+      main > section:nth-of-type(odd) {
+        background: var(--section-tone-b);
+      }
+
+      main > section:nth-of-type(even) {
+        background: var(--section-tone-a);
       }
 
       #welcome {
@@ -554,7 +511,7 @@
         display: grid;
         grid-template-rows: auto 1fr;
         padding: 0 0 clamp(2.8rem, 6.8vh, 4.8rem);
-        background: var(--page-bg);
+        background: var(--section-tone-a);
         border-bottom: 1px solid var(--theme-outline-variant);
         overflow: clip;
       }
@@ -621,8 +578,8 @@
         align-items: center;
         gap: 0.44rem;
         border-radius: 999px;
-        border: 0.5px solid var(--theme-outline-variant);
-        background: var(--theme-secondary-button);
+        border: 1px solid color-mix(in srgb, var(--surface-high) 18%, transparent);
+        background: color-mix(in srgb, var(--section-tone-b) 82%, var(--surface-high));
         padding: 0.44rem 0.92rem;
         color: var(--accent);
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
@@ -787,7 +744,7 @@
         border: 1px solid color-mix(in srgb, var(--surface-high) 14%, transparent);
         box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
         overflow: clip;
-        background: var(--color-black);
+        background: #0f0f13;
       }
 
       .featured-card {
@@ -836,9 +793,9 @@
 
       #features .feature {
         padding-bottom: 2rem;
-        border: 1px solid var(--card-border);
-        border-radius: 20px;
-        background: var(--card-surface);
+        border: 1px solid var(--theme-outline-variant);
+        border-radius: 1.5rem;
+        background: color-mix(in srgb, var(--section-tone-b) 82%, var(--surface-high));
         padding: 1.2rem;
       }
 
@@ -857,7 +814,7 @@
       }
 
       #features img {
-        border-radius: 20px;
+        border-radius: 2em;
         border: 1px solid var(--theme-outline-variant);
       }
 
