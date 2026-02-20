@@ -71,6 +71,13 @@
         --command-chip-bg: var(--surface-high);
         --command-chip-fg: var(--section-tone-a);
         --menu-overlay-bg: color-mix(in srgb, var(--section-tone-a) 95%, var(--section-tone-b));
+        --card-surface: color-mix(in srgb, var(--section-tone-b) 82%, var(--surface-high));
+        --card-surface-hover: color-mix(in srgb, var(--section-tone-b) 76%, var(--surface-high));
+        --card-border: color-mix(in srgb, var(--surface-high) 14%, transparent);
+        --hero-glow: color-mix(in srgb, var(--accent) 18%, transparent);
+        --hero-fade: linear-gradient(180deg, color-mix(in srgb, var(--section-tone-a) 10%, transparent), transparent 36%);
+        --section-gap-y: clamp(3.2rem, 8vh, 6rem);
+        --text-prose: color-mix(in srgb, var(--surface-high) 62%, var(--surface-low));
 
         --palette-0: var(--color-grey);
         --palette-10: color-mix(in srgb, var(--color-white) 80%, var(--color-grey));
@@ -126,6 +133,13 @@
         --command-chip-bg: #fafaf8;
         --command-chip-fg: #141413;
         --menu-overlay-bg: color-mix(in srgb, var(--section-tone-a) 96%, #ffffff);
+        --card-surface: #f7f4ed;
+        --card-surface-hover: #fbf8f2;
+        --card-border: color-mix(in srgb, #141413 10%, transparent);
+        --hero-glow: color-mix(in srgb, #d67953 15%, transparent);
+        --hero-fade: linear-gradient(180deg, color-mix(in srgb, #ffffff 62%, transparent), transparent 45%);
+        --section-gap-y: clamp(3rem, 7.3vh, 5.2rem);
+        --text-prose: #666157;
       }
     }
 
@@ -172,7 +186,7 @@
       }
 
       section {
-        min-height: 100dvh;
+        min-height: auto;
       }
 
       section.center {
@@ -191,6 +205,7 @@
 
       p {
         color: var(--theme-surface-on-surface-variant);
+        line-height: 1.5;
       }
     }
 
@@ -324,22 +339,22 @@
       }
 
       header {
-        width: min(calc(var(--page-max) + 56px), calc(100% - 3.5rem));
+        width: min(calc(var(--page-max) + 32px), calc(100% - 3.2rem));
         margin: 0 auto;
         display: flex;
         flex-direction: row;
-        gap: clamp(0.7rem, 1.4vw, 1.55rem);
+        gap: clamp(0.65rem, 1.3vw, 1.2rem);
         align-items: center;
-        min-height: 72px;
-        padding-block: 0.55rem;
+        min-height: 68px;
+        padding-block: 0.45rem;
       }
 
       .brand {
         display: inline-flex;
         align-items: center;
-        gap: 0.58rem;
+        gap: 0.5rem;
         font-family: var(--font-serif);
-        font-size: clamp(1.28rem, 2vw, 1.56rem);
+        font-size: clamp(1.22rem, 1.9vw, 1.48rem);
         font-weight: 500;
         letter-spacing: -0.012em;
         text-transform: none;
@@ -364,7 +379,7 @@
       }
 
       header nav {
-        margin-left: clamp(0.6rem, 2vw, 2rem);
+        margin-left: clamp(0.45rem, 1.8vw, 1.35rem);
         margin-right: auto;
       }
 
@@ -381,8 +396,8 @@
         align-items: center;
         gap: 0.14rem;
         color: var(--surface-mid);
-        padding: 0.4rem 0.66rem;
-        font-size: 0.89rem;
+        padding: 0.4rem 0.62rem;
+        font-size: 0.86rem;
         font-weight: 500;
         letter-spacing: 0.01em;
         border-radius: 0.5rem;
@@ -406,13 +421,13 @@
         margin-left: 0;
         display: inline-flex;
         align-items: center;
-        gap: 0.58rem;
+        gap: 0.45rem;
       }
 
       .header-login {
         color: var(--surface-mid);
         text-decoration: none;
-        font-size: 0.89rem;
+        font-size: 0.85rem;
         padding: 0.35rem 0.2rem;
       }
 
@@ -425,13 +440,13 @@
         display: inline-flex;
         align-items: center;
         gap: 0.35rem;
-        min-height: 36px;
+        min-height: 34px;
         border-radius: 999px;
         border: 1px solid color-mix(in srgb, var(--surface-high) 20%, transparent);
         background: transparent;
         color: var(--surface-mid);
-        padding: 0 0.82rem;
-        font-size: 0.82rem;
+        padding: 0 0.74rem;
+        font-size: 0.78rem;
         font-weight: 500;
         letter-spacing: 0.01em;
         cursor: pointer;
@@ -452,10 +467,10 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 38px;
+        min-height: 36px;
         border-radius: 999px;
-        padding: 0 1.08rem;
-        font-size: 0.87rem;
+        padding: 0 0.94rem;
+        font-size: 0.84rem;
         font-weight: 500;
         letter-spacing: 0.01em;
         text-decoration: none;
@@ -510,18 +525,30 @@
         position: relative;
         display: grid;
         grid-template-rows: auto 1fr;
-        padding: 0 0 clamp(2.8rem, 6.8vh, 4.8rem);
+        padding: 0 0 clamp(3.6rem, 8vh, 5.6rem);
         background: var(--section-tone-a);
         border-bottom: 1px solid var(--theme-outline-variant);
         overflow: clip;
       }
 
       #welcome::before {
-        content: none;
+        content: "";
+        position: absolute;
+        inset: -12% 12% auto;
+        height: 58%;
+        border-radius: 50%;
+        background: radial-gradient(circle at 50% 0%, var(--hero-glow), transparent 65%);
+        pointer-events: none;
+        z-index: 0;
       }
 
       #welcome::after {
-        content: none;
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--hero-fade);
+        pointer-events: none;
+        z-index: 0;
       }
 
       #welcome .hero-rail {
@@ -562,25 +589,25 @@
       }
 
       #welcome .hero-shell {
-        width: min(1100px, calc(100% - 1rem));
+        width: min(1040px, calc(100% - 1rem));
         margin-inline: auto;
         display: grid;
         justify-items: center;
         text-align: center;
-        padding-top: clamp(3.2rem, 7.5vh, 5.3rem);
+        padding-top: clamp(4rem, 9vh, 6.2rem);
         position: relative;
         z-index: 1;
       }
 
       #welcome .hero-pill {
-        margin: 0 0 2.05rem;
+        margin: 0 0 2.2rem;
         display: inline-flex;
         align-items: center;
         gap: 0.44rem;
         border-radius: 999px;
         border: 1px solid color-mix(in srgb, var(--surface-high) 18%, transparent);
         background: color-mix(in srgb, var(--section-tone-b) 82%, var(--surface-high));
-        padding: 0.44rem 0.92rem;
+        padding: 0.45rem 0.94rem;
         color: var(--accent);
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
         font-size: 0.82rem;
@@ -593,9 +620,9 @@
       #welcome .hero-title {
         margin: 0;
         font-family: var(--font-serif);
-        font-size: clamp(3.2rem, 8.6vw, 7rem);
+        font-size: clamp(3.4rem, 8.4vw, 7.25rem);
         line-height: 0.98;
-        letter-spacing: -0.03em;
+        letter-spacing: -0.028em;
         font-weight: 500;
         color: var(--surface-high);
       }
@@ -610,17 +637,17 @@
       }
 
       #welcome .hero-sub {
-        margin: 1.5rem 0 0;
-        max-width: 44ch;
-        color: color-mix(in srgb, var(--surface-high) 62%, var(--surface-low));
-        font-size: clamp(1rem, 1.72vw, 1.13rem);
-        line-height: 1.45;
+        margin: 1.4rem 0 0;
+        max-width: 46ch;
+        color: var(--text-prose);
+        font-size: clamp(1.02rem, 1.72vw, 1.19rem);
+        line-height: 1.42;
       }
 
       #welcome .hero-install-note {
-        margin: 1.8rem 0 0;
+        margin: 1.45rem 0 0;
         color: var(--surface-low);
-        font-size: 0.97rem;
+        font-size: 0.9rem;
       }
 
       #welcome .hero-install-note a {
@@ -628,8 +655,8 @@
       }
 
       #welcome .hero-command {
-        margin-top: 0.58rem;
-        width: min(100%, 560px);
+        margin-top: 0.65rem;
+        width: min(100%, 760px);
         display: flex;
         align-items: center;
         border: 1px solid color-mix(in srgb, var(--surface-high) 14%, transparent);
@@ -668,7 +695,7 @@
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
         flex: 1;
         min-width: 0;
-        font-size: 0.98rem;
+        font-size: 1rem;
         color: var(--surface-high);
         white-space: nowrap;
         overflow: hidden;
@@ -710,28 +737,30 @@
       }
 
       #welcome .hero-platforms {
-        margin-top: clamp(3rem, 8vh, 4.3rem);
+        margin-top: clamp(3.4rem, 8.8vh, 5.1rem);
         color: color-mix(in srgb, var(--surface-high) 42%, var(--surface-low));
         font-size: 0.95rem;
       }
 
       #welcome .hero-platform-list {
-        margin-top: 0.75rem;
-        width: min(100%, 940px);
+        margin-top: 1rem;
+        width: min(100%, 980px);
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 1rem;
+        gap: 0.65rem 1rem;
+        border-top: 1px solid color-mix(in srgb, var(--surface-high) 14%, transparent);
+        padding-top: 1.25rem;
       }
 
       #welcome .hero-platform-list span {
         color: var(--surface-mid);
-        font-size: 0.95rem;
-        font-weight: 600;
-        letter-spacing: 0.04em;
+        font-size: 1.02rem;
+        font-weight: 500;
+        letter-spacing: 0.01em;
       }
 
       #video {
-        padding-block: clamp(0.4rem, 1.4vh, 1.2rem) 2.2rem;
+        padding-block: clamp(1.1rem, 2.6vh, 2rem) clamp(2.2rem, 5.5vh, 3.4rem);
         border-top: 1px solid var(--theme-outline-variant);
       }
 
@@ -740,7 +769,7 @@
         aspect-ratio: 16/7.8;
         margin-inline: auto;
         transform-origin: center center;
-        border-radius: 2em;
+        border-radius: 1.8em;
         border: 1px solid color-mix(in srgb, var(--surface-high) 14%, transparent);
         box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
         overflow: clip;
@@ -760,7 +789,7 @@
         font-family: var(--font-ui);
         font-size: clamp(0.85rem, 1.05vw, 1.2rem);
         font-weight: 500;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
         color: color-mix(in srgb, var(--color-white) 82%, var(--color-lightgrey));
       }
@@ -779,6 +808,7 @@
         display: grid;
         grid-template-columns: subgrid;
         border-top: 1px solid var(--theme-outline-variant);
+        padding-block: var(--section-gap-y);
       }
 
       #product > * {
@@ -788,15 +818,22 @@
       #features {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
+        gap: 1.2rem;
       }
 
       #features .feature {
         padding-bottom: 2rem;
-        border: 1px solid var(--theme-outline-variant);
+        border: 1px solid var(--card-border);
         border-radius: 1.5rem;
-        background: color-mix(in srgb, var(--section-tone-b) 82%, var(--surface-high));
-        padding: 1.2rem;
+        background: var(--card-surface);
+        padding: 1.3rem;
+        transition: background 0.2s ease, border-color 0.2s ease, translate 0.2s ease;
+      }
+
+      #features .feature:hover {
+        background: var(--card-surface-hover);
+        border-color: color-mix(in srgb, var(--surface-high) 22%, transparent);
+        translate: 0 -2px;
       }
 
       #features h3 {
@@ -804,12 +841,12 @@
         font-weight: 500;
         font-size: 1.5rem;
         line-height: 1.1;
-        margin: 0 0 0.8rem;
+        margin: 0 0 0.62rem;
       }
 
       #features p {
         font-weight: 350;
-        line-height: 1.35;
+        line-height: 1.43;
         color: var(--surface-mid);
       }
 
@@ -856,8 +893,8 @@
       #developers {
         width: 100%;
         border-top: 1px solid var(--theme-outline-variant);
-        margin-top: 2em;
-        padding-top: 2em;
+        padding-top: var(--section-gap-y);
+        padding-bottom: var(--section-gap-y);
         display: grid;
         grid-template-columns: subgrid;
       }
@@ -883,11 +920,11 @@
 
       .carousel {
         grid-column: fullbleed;
-        padding-inline: 3rem;
+        padding-inline: 2.5rem;
         width: 100%;
         overflow-x: scroll;
         display: flex;
-        gap: 2rem;
+        gap: 1.4rem;
       }
 
       .developer {
@@ -929,7 +966,7 @@
       }
 
       .developer p {
-        width: 40%;
+        width: 45%;
         text-wrap: pretty;
         letter-spacing: 0.02rem;
         font-weight: 350;
@@ -965,6 +1002,7 @@
         text-align: center;
         gap: 1rem;
         border-top: 1px solid var(--theme-outline-variant);
+        padding-block: var(--section-gap-y);
       }
 
       @media (width >= 930px) {
@@ -975,7 +1013,7 @@
       }
 
       #who > div {
-        height: 40vh;
+        min-height: 360px;
         width: min(100%, 620px);
         display: grid;
         place-content: center;
@@ -987,7 +1025,8 @@
 
       @media (width >= 930px) {
         #who > div {
-          height: 80vh;
+          min-height: 520px;
+          height: min(72vh, 700px);
         }
       }
 
@@ -1008,6 +1047,8 @@
         grid-template-columns: subgrid;
         height: min-content;
         border-top: 1px solid var(--theme-outline-variant);
+        padding-top: var(--section-gap-y);
+        padding-bottom: clamp(2.8rem, 7vh, 4.5rem);
       }
 
       #beforeyougo > * {
@@ -1017,9 +1058,9 @@
       #beforeyougo .card {
         width: 100%;
         aspect-ratio: 4/3;
-        max-height: 80vh;
+        max-height: 72vh;
         display: grid;
-        padding: 4em;
+        padding: clamp(2rem, 4vw, 3.2rem);
         gap: 1rem;
         align-content: center;
       }
@@ -1050,7 +1091,7 @@
       #site-footer {
         width: min(var(--page-max), calc(100% - 6rem));
         margin: 0 auto 2.25rem;
-        padding-top: 1.2rem;
+        padding-top: 1.6rem;
         border-top: 1px solid var(--theme-outline-variant);
         display: flex;
         align-items: center;
@@ -1090,12 +1131,17 @@
       @media (width < 930px) {
         .theme-toggle {
           min-height: 2.45rem;
-          padding-inline: 0.72rem;
-          font-size: 0.78rem;
+          min-width: 2.45rem;
+          padding-inline: 0.6rem;
+          font-size: 0.76rem;
         }
 
         .theme-toggle .material-symbols-outlined {
           font-size: 15px;
+        }
+
+        #theme-toggle-label {
+          display: none;
         }
 
         .menu-button {
@@ -1194,7 +1240,7 @@
 
         #welcome {
           min-height: auto;
-          padding: 0 0.35rem 2rem;
+          padding: 0 0.35rem 2.7rem;
         }
 
         #welcome .hero-rail {
@@ -1209,7 +1255,7 @@
 
         #welcome .hero-shell {
           width: calc(100% - 0.35rem);
-          padding-top: 2.4rem;
+          padding-top: 2.9rem;
         }
 
         #welcome .hero-title {
@@ -1217,8 +1263,8 @@
         }
 
         #welcome .hero-sub {
-          max-width: 24ch;
-          font-size: clamp(1rem, 4.1vw, 1.14rem);
+          max-width: 26ch;
+          font-size: clamp(1rem, 3.8vw, 1.08rem);
           margin-top: 1.25rem;
         }
 
@@ -1232,14 +1278,15 @@
         }
 
         #welcome .hero-command-line {
-          min-height: 44px;
-          padding-inline: 0.72rem;
+          min-height: 46px;
+          padding-inline: 0.56rem;
+          gap: 0.42rem;
         }
 
         #welcome .hero-command-mode {
           min-height: 32px;
-          font-size: 0.8rem;
-          padding-inline: 0.62rem;
+          font-size: 0.76rem;
+          padding-inline: 0.58rem;
         }
 
         #welcome .hero-command-mode .material-symbols-outlined {
@@ -1247,7 +1294,7 @@
         }
 
         #welcome .hero-command-line code {
-          font-size: 0.84rem;
+          font-size: 0.8rem;
         }
 
         #welcome .hero-cases {
@@ -1257,7 +1304,8 @@
         #welcome .hero-platform-list {
           grid-template-columns: repeat(2, minmax(0, 1fr));
           row-gap: 0.8rem;
-          margin-top: 1.35rem;
+          margin-top: 1.1rem;
+          padding-top: 0.92rem;
         }
 
         #welcome .hero-platform-list span {
@@ -1267,6 +1315,13 @@
         .scroll-grow-box {
           aspect-ratio: 16/9.3;
           border-radius: 1.4rem;
+        }
+
+        #product,
+        #developers,
+        #who,
+        #beforeyougo {
+          padding-block: clamp(2.4rem, 6vh, 3.5rem);
         }
 
         .featured-title {
@@ -1593,7 +1648,7 @@
       </nav>
 
       <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">
-        <span class="material-symbols-outlined" aria-hidden="true">contrast</span>
+        <span id="theme-toggle-icon" class="material-symbols-outlined" aria-hidden="true">dark_mode</span>
         <span id="theme-toggle-label">Light mode</span>
       </button>
 
@@ -1636,8 +1691,8 @@
 
   <section id="video">
     <div class="scroll-grow-box featured-card">
-      <p class="featured-label">Featured</p>
-      <h2 class="featured-title">FOUR HUNDRED</h2>
+      <p class="featured-label">Product</p>
+      <h2 class="featured-title">CLAUDE CODE</h2>
     </div>
   </section>
 
@@ -1753,9 +1808,9 @@
     <p class="footer-brand">Ariel AI Studio</p>
     <div class="footer-links">
       <a href="#welcome">Home</a>
-      <a href="#product">Services</a>
-      <a href="#developers">Cases</a>
-      <a href="#beforeyougo">Install</a>
+      <a href="#product">Product</a>
+      <a href="#developers">Platform</a>
+      <a href="#beforeyougo">Solutions</a>
     </div>
   </footer>
 
@@ -1763,6 +1818,7 @@
     const root = document.documentElement;
     const themeToggle = document.getElementById('theme-toggle');
     const themeToggleLabel = document.getElementById('theme-toggle-label');
+    const themeToggleIcon = document.getElementById('theme-toggle-icon');
     const THEME_STORAGE_KEY = 'ariel-ai-studio-theme';
 
     function applyTheme(theme) {
@@ -1771,6 +1827,10 @@
 
       if (themeToggleLabel) {
         themeToggleLabel.textContent = nextTheme === 'dark' ? 'Light mode' : 'Black mode';
+      }
+
+      if (themeToggleIcon) {
+        themeToggleIcon.textContent = nextTheme === 'dark' ? 'light_mode' : 'dark_mode';
       }
 
       if (themeToggle) {
