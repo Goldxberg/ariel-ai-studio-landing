@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build Your Own Team Library — Figma</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafafa;
+      --bg-card: #fafafa;
+      --black: #000000;
+      --text-primary: #000000;
+      --text-secondary: rgba(0,0,0,0.8);
+      --text-muted: rgba(0,0,0,0.5);
+      --accent-blue: #007be5;
+      --accent-blue-bright: #18a0fb;
+      --accent-fuchsia: #da61aa;
+      --accent-iris: #7b61ff;
+      --tip-bg: #fffae6;
+      --tip-border: #f5e988;
+      --border: rgba(0,0,0,0.1);
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --card-radius: 12px;
+    }
+
+    html { background: #e5e5e5; font-family: var(--font); }
+
+    body {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--bg);
+      min-height: 100vh;
+    }
+
+    /* ── TOP BANNER ── */
+    .start-banner {
+      padding: 24px 32px 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+    .start-banner span {
+      display: block;
+      font-size: 20px;
+      margin-top: 4px;
+    }
+
+    /* ── STEP CARD ── */
+    .step {
+      display: grid;
+      grid-template-columns: 401fr 284fr;
+      min-height: 492px;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step:first-of-type { border-top: 1px solid var(--border); }
+
+    .step-left {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-right: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+
+    .step-number {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .step-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.6;
+      letter-spacing: -0.34px;
+      margin-bottom: 16px;
+    }
+
+    .step-desc {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      letter-spacing: 0.055px;
+    }
+
+    .step-desc b, .step-desc strong {
+      font-weight: 700;
+    }
+
+    .step-preview {
+      margin-top: 20px;
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .step-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .tip-box {
+      margin-top: auto;
+      padding: 10px 12px;
+      background: var(--tip-bg);
+      border: 1px solid var(--tip-border);
+      border-radius: 8px;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .tip-icon {
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .tip-text {
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      letter-spacing: 0.055px;
+    }
+
+    /* ── STEP RIGHT ── */
+    .step-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+
+    .step-right img.bg-fill {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .step-right .annotation {
+      position: absolute;
+      top: 20%;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-blue);
+      text-align: center;
+      opacity: 0.8;
+      max-width: 180px;
+      line-height: 1.4;
+      letter-spacing: 0.055px;
+      z-index: 2;
+    }
+
+    /* ── HERO CARD (step 01) ── */
+    .step.hero {
+      grid-template-columns: 1fr 1fr;
+      min-height: 492px;
+    }
+
+    .step.hero .step-right {
+      background: #141413;
+    }
+
+    .step.hero .step-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .step.hero .step-left {
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .step.hero .step-title {
+      font-size: clamp(28px, 4vw, 38px);
+      line-height: 1.1;
+      letter-spacing: -0.72px;
+      margin-bottom: 0;
+    }
+
+    .step.hero .step-desc {
+      font-size: 14px;
+      line-height: 24px;
+      letter-spacing: -0.084px;
+    }
+
+    /* ── SWATCHES ── */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 40px);
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .swatch {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    /* ── BUTTON DEMO ── */
+    .button-demo {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 20px;
+      margin-top: 16px;
+    }
+
+    .demo-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: var(--font);
+      cursor: pointer;
+      border: none;
+      background: var(--accent-fuchsia);
+      color: white;
+      width: fit-content;
+    }
+
+    .demo-btn.secondary {
+      background: white;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    /* ── TEXT STYLES DEMO ── */
+    .text-styles-demo {
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ts-h1 { font-size: 32px; font-weight: 700; line-height: 1.1; letter-spacing: -0.5px; }
+    .ts-h2 { font-size: 20px; font-weight: 600; line-height: 1.2; }
+    .ts-body { font-size: 14px; font-weight: 400; line-height: 1.5; color: var(--text-secondary); }
+    .ts-small { font-size: 11px; font-weight: 400; line-height: 1.5; color: var(--text-muted); }
+    .ts-btn-text { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+    .ts-link { font-size: 12px; font-weight: 400; color: var(--accent-blue); text-decoration: underline; }
+
+    /* ── TWO-COL INSIDE LEFT ── */
+    .two-col-preview {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+      flex: 1;
+    }
+
+    .two-col-preview img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    /* ── COMPONENTS DEMO ── */
+    .component-demo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      padding: 16px;
+    }
+
+    .component-demo .btn-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .component-demo .btn-state button {
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid rgba(0,0,0,0.12);
+      background: white;
+      cursor: pointer;
+      font-family: var(--font);
+    }
+
+    .component-demo .btn-state button.hover-state {
+      background: #f0f0f0;
+    }
+
+    .component-demo .label {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── PUBLISH CARD ── */
+    .step.wide-left {
+      grid-template-columns: 1fr;
+    }
+
+    .step.wide-left .step-left {
+      border-right: none;
+    }
+
+    /* ── BANNER / NOTICE ── */
+    .notice-banner {
+      margin-top: auto;
+      padding: 10px 12px;
+      background: #e8f4fd;
+      border: 1px solid #bdd7f0;
+      border-radius: 8px;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .notice-text {
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 32px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      font-size: 12px;
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* ── PROGRESS BAR ── */
+    .progress-bar {
+      display: flex;
+      gap: 4px;
+      padding: 16px 32px 0;
+      align-items: center;
+    }
+
+    .progress-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .progress-dot.done { background: var(--text-primary); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .step {
+        grid-template-columns: 1fr;
+      }
+      .step-right {
+        min-height: 200px;
+      }
+      .step.hero {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="start-banner">
+    Start here
+    <span>↓</span>
+  </div>
+
+  <!-- STEP 01 — HERO -->
+  <div class="step hero">
+    <div class="step-left">
+      <p class="step-number">01 / 11</p>
+      <h1 class="step-title">Build your own team library</h1>
+      <p class="step-desc">Don't reinvent the wheel with every design. Team libraries let you share styles and components across files, with everyone on your team.</p>
+    </div>
+    <div class="step-right">
+      <img src="https://www.figma.com/api/mcp/asset/cd566517-e754-4d0f-b3cd-f848159314ec" alt="Team library preview" />
+    </div>
+  </div>
+
+  <!-- STEP 02 — EDIT COLOR STYLES -->
+  <div class="step">
+    <div class="step-left">
+      <p class="step-number">02 / 11</p>
+      <h2 class="step-title">Edit team color styles</h2>
+      <p class="step-desc">
+        Published styles are shared with everyone on the team — they can be used by all team members in any of their files. Changing these styles will update them everywhere they're used.<br><br>
+        Change these default colors to your team's colors by selecting a color layer and clicking on the color icon in the <strong>Design panel</strong> to the right.
+      </p>
+      <div class="step-preview">
+        <img src="https://www.figma.com/api/mcp/asset/dbf03381-3b96-4d2a-9b18-802ce53a108d" alt="Edit team color styles" />
+      </div>
+    </div>
+    <div class="step-right">
+      <img class="bg-fill" src="https://www.figma.com/api/mcp/asset/82e0499f-cc69-4fcb-b916-9f101947ee17" alt="Color styles example" />
+      <p class="annotation">We're published already!<br>Edit us to be your team's colors.</p>
+    </div>
+  </div>
+
+  <!-- STEP 03 — CREATE COLOR STYLES -->
+  <div class="step">
+    <div class="step-left">
+      <p class="step-number">03 / 11</p>
+      <h2 class="step-title">Create color styles</h2>
+      <p class="step-desc">
+        To create new styles, select a layer and fill it with the color you want as a style. Then click on the styles icon in the color styles menu.
+      </p>
+      <div class="swatch-grid">
+        <div class="swatch" style="background:#e9549b"></div>
+        <div class="swatch" style="background:#ee7fb6"></div>
+        <div class="swatch" style="background:#f3a9ce"></div>
+        <div class="swatch" style="background:#7b61ff"></div>
+        <div class="swatch" style="background:#9c8aff"></div>
+        <div class="swatch" style="background:#bdb3ff"></div>
+      </div>
+      <div class="tip-box" style="margin-top: auto;">
+        <span class="tip-icon">💡</span>
+        <p class="tip-text"><strong>Tip:</strong> You can group styles together using the naming convention Group/Color. For example: <em>Fuschia/100</em></p>
+      </div>
+    </div>
+    <div class="step-right" style="background: #f7f7f7; flex-direction: column; gap: 12px; padding: 32px; justify-content: center; align-items: flex-start;">
+      <p class="annotation" style="position:static; max-width: 180px;">Color and create some more styles out of us!</p>
+      <div class="swatch-grid">
+        <div class="swatch" style="background:#fff; border: 2px dashed #ccc;"></div>
+        <div class="swatch" style="background:#fff; border: 2px dashed #ccc;"></div>
+        <div class="swatch" style="background:#fff; border: 2px dashed #ccc;"></div>
+        <div class="swatch" style="background:#fff; border: 2px dashed #ccc;"></div>
+        <div class="swatch" style="background:#fff; border: 2px dashed #ccc;"></div>
+        <div class="swatch" style="background:#fff; border: 2px dashed #ccc;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 04 — USE COLOR STYLES -->
+  <div class="step">
+    <div class="step-left">
+      <p class="step-number">04 / 11</p>
+      <h2 class="step-title">Use color styles</h2>
+      <p class="step-desc">
+        Select a layer, then click on the styles icon next to the <strong>Fill</strong> property in the panel to the right.
+      </p>
+      <div class="step-preview" style="background: #f0f0f0; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 8px;">
+        <div style="height: 40px; border-radius: 6px; background: #e9549b;"></div>
+        <div style="height: 40px; border-radius: 6px; background: #7b61ff;"></div>
+        <div style="height: 40px; border-radius: 6px; background: #18a0fb;"></div>
+        <div style="height: 40px; border-radius: 6px; background: #1bc47d;"></div>
+      </div>
+    </div>
+    <div class="step-right" style="flex-direction: column; gap: 16px; padding: 32px; background: #f7f7f7; justify-content: center; align-items: flex-start;">
+      <p class="annotation" style="position:static; max-width: 180px;">Color me with a style</p>
+      <div style="width: 100%; height: 200px; border-radius: 12px; border: 2px dashed #ccc; background: white;"></div>
+    </div>
+  </div>
+
+  <!-- STEP 05 — EDIT TEXT STYLES -->
+  <div class="step">
+    <div class="step-left">
+      <p class="step-number">05 / 11</p>
+      <h2 class="step-title">Edit text styles</h2>
+      <p class="step-desc">
+        Just like published color styles, published text styles are shared across your team. Change text styles by selecting a text layer with the style and clicking on the styles icon in the panel to the right.
+      </p>
+      <div class="text-styles-demo" style="margin-top: 16px; flex: 1; background: #f7f7f7; border-radius: 8px; padding: 20px;">
+        <p class="ts-h1">Header 1</p>
+        <p class="ts-h2">Header 2</p>
+        <p class="ts-body">Body</p>
+      </div>
+    </div>
+    <div class="step-right" style="flex-direction: column; padding: 32px; justify-content: center; align-items: flex-start; gap: 12px; background: #f7f7f7;">
+      <p class="annotation" style="position: static; max-width: 200px;">We're published already! Edit us to be your team's text styles</p>
+      <div style="background: white; border-radius: 8px; padding: 20px; width: 100%;">
+        <p style="font-size: 24px; font-weight: 700; letter-spacing: -0.4px;">Header 1</p>
+        <p style="font-size: 18px; font-weight: 600; margin-top: 8px;">Header 2</p>
+        <p style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">Body text goes here</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 06 — CREATE TEXT STYLES -->
+  <div class="step">
+    <div class="step-left">
+      <p class="step-number">06 / 11</p>
+      <h2 class="step-title">Create text styles</h2>
+      <p class="step-desc">
+        To create new text styles, first select a text layer and format it with the type you want as a style. Then, click on the styles icon in the text styles menu.
+      </p>
+      <div class="text-styles-demo" style="margin-top: 16px; flex: 1; background: #f7f7f7; border-radius: 8px;">
+        <p class="ts-small">Body small</p>
+        <p class="ts-btn-text">Button text</p>
+        <p class="ts-link">Link text</p>
+      </div>
+    </div>
+    <div class="step-right" style="flex-direction: column; padding: 32px; justify-content: center; align-items: flex-start; gap: 12px; background: #f7f7f7;">
+      <p class="annotation" style="position: static; max-width: 200px;">Edit us to be your team's text styles and create some more styles</p>
+      <div style="background: white; border-radius: 8px; padding: 20px; width: 100%; display: flex; flex-direction: column; gap: 8px;">
+        <p style="font-size: 11px; color: var(--text-muted);">Body small</p>
+        <p style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;">Button text</p>
+        <p style="font-size: 12px; color: var(--accent-blue); text-decoration: underline;">Link text</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 07 — USE TEXT STYLES -->
+  <div class="step">
+    <div class="step-left">
+      <p class="step-number">07 / 11</p>
+      <h2 class="step-title">Use text styles</h2>
+      <p class="step-desc">
+        Select a text layer and click on the styles icon next to the <strong>Text</strong> property to use text styles.
+      </p>
+      <div class="step-preview" style="background: #f0f0f0; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 10px; margin-top: 16px;">
+        <div style="height: 28px; background: #ddd; border-radius: 4px; width: 70%;"></div>
+        <div style="height: 18px; background: #ddd; border-radius: 4px; width: 90%;"></div>
+        <div style="height: 18px; background: #ddd; border-radius: 4px; width: 80%;"></div>
+        <div style="height: 14px; background: #ddd; border-radius: 4px; width: 60%;"></div>
+      </div>
+    </div>
+    <div class="step-right" style="flex-direction: column; padding: 32px; justify-content: center; align-items: flex-start; gap: 16px; background: #f7f7f7;">
+      <p class="annotation" style="position: static; max-width: 180px;">Give me a text style</p>
+      <div style="background: white; border-radius: 8px; padding: 20px; width: 100%;">
+        <p style="font-size: 18px; font-weight: 700;">I'm a title</p>
+        <p style="font-size: 13px; color: var(--text-secondary); margin-top: 6px;">Some body text here</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 08 — CREATE COMPONENTS -->
+  <div class="step">
+    <div class="step-left">
+      <p class="step-number">08 / 11</p>
+      <h2 class="step-title">Create components</h2>
+      <p class="step-desc">
+        Create components out of commonly used objects such as buttons and icons to reuse them across your designs. Select an element and click <strong>Create Component</strong> in the top bar or the right-click menu.
+      </p>
+      <div style="flex: 1; background: #f7f7f7; border-radius: 8px; margin-top: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+        <button class="demo-btn">Primary Button</button>
+        <button class="demo-btn" style="background: var(--accent-iris);">Secondary Button</button>
+        <button class="demo-btn secondary">Ghost Button</button>
+      </div>
+      <div class="tip-box" style="margin-top: 12px;">
+        <span class="tip-icon">💡</span>
+        <p class="tip-text"><strong>Tip:</strong> The keyboard shortcut to create a component is <kbd>Ctrl Alt K</kbd> on Windows, or <kbd>⌘⌥K</kbd> on a Mac.</p>
+      </div>
+    </div>
+    <div class="step-right" style="flex-direction: column; padding: 32px; justify-content: center; align-items: flex-start; gap: 16px; background: #f7f7f7;">
+      <p class="annotation" style="position: static; max-width: 210px;">Make us into components to show hover states across your designs</p>
+      <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+        <button style="padding: 10px 20px; border-radius: 6px; font-size: 14px; border: 1px solid rgba(0,0,0,0.12); background: white; cursor: pointer; font-family: var(--font); font-weight: 600;">Default</button>
+        <button style="padding: 10px 20px; border-radius: 6px; font-size: 14px; border: 1px solid rgba(0,0,0,0.12); background: #f0f0f0; cursor: pointer; font-family: var(--font); font-weight: 600;">Hover</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 09 — USE COMPONENTS -->
+  <div class="step">
+    <div class="step-left">
+      <p class="step-number">09 / 11</p>
+      <h2 class="step-title">Use components</h2>
+      <p class="step-desc">
+        Drag and drop components onto your canvas from the Assets panel. If you're on an Education, Professional, or Organization team, you can publish them for team members to use across their own files.
+      </p>
+      <div class="component-demo" style="margin-top: 16px; flex: 1; background: #f7f7f7; border-radius: 8px; padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start;">
+        <div class="btn-state">
+          <button>Default</button>
+          <span class="label">Default</span>
+        </div>
+        <div class="btn-state">
+          <button class="hover-state">Hover</button>
+          <span class="label">Hover</span>
+        </div>
+      </div>
+    </div>
+    <div class="step-right" style="flex-direction: column; padding: 32px; justify-content: center; align-items: flex-start; gap: 16px; background: #f7f7f7;">
+      <p class="annotation" style="position: static; max-width: 250px;">Drag the correct cursor component over these buttons to show default and hover states</p>
+      <div style="display: flex; gap: 12px; margin-top: 8px;">
+        <button style="padding: 10px 20px; border-radius: 6px; font-size: 14px; border: 1px solid rgba(0,0,0,0.12); background: white; cursor: default; font-family: var(--font);">Default</button>
+        <button style="padding: 10px 20px; border-radius: 6px; font-size: 14px; border: 1px solid rgba(0,0,0,0.12); background: #f0f0f0; cursor: pointer; font-family: var(--font);">Hover</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 10 — PUBLISH TEAM LIBRARY -->
+  <div class="step" style="grid-template-columns: 1fr 1fr;">
+    <div class="step-left">
+      <p class="step-number">10 / 11</p>
+      <h2 class="step-title">Publish your Team Library</h2>
+      <p class="step-desc">
+        To share the new styles and components you created in this file with team members, you need to publish this file. Click on the book icon in the Assets panel to the top left.
+      </p>
+      <div class="step-preview">
+        <img src="https://www.figma.com/api/mcp/asset/7d56e1ea-243b-4087-8492-5d0aca152975" alt="Publish step 1" />
+      </div>
+      <div class="notice-banner">
+        <span style="font-size: 14px; flex-shrink: 0; margin-top: 1px;">ℹ️</span>
+        <p class="notice-text">Only <strong>Education, Professional, or Organization</strong> teams can publish components.</p>
+      </div>
+    </div>
+    <div class="step-right" style="flex-direction: column; padding: 32px; justify-content: flex-start; align-items: flex-start; gap: 16px; background: #f7f7f7;">
+      <p class="step-desc">
+        Then, click on <strong>Publish</strong> next to the current file. You'll have a chance to review your components, styles, and to add a description for your updates.
+      </p>
+      <div style="flex: 1; width: 100%;">
+        <img src="https://www.figma.com/api/mcp/asset/3b0c501a-aa3b-4eb5-a058-b2c99b3ce28c" alt="Publish step 2" style="width: 100%; border-radius: 8px; object-fit: cover;" />
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 11 — USING YOUR TEAM LIBRARY -->
+  <div class="step" style="grid-template-columns: 1fr;">
+    <div class="step-left" style="border-right: none;">
+      <p class="step-number">11 / 11</p>
+      <h2 class="step-title">Using your Team Library</h2>
+      <p class="step-desc">
+        To use styles and components from Team Libraries, click on the book icon in the Assets panel in any of your files. Toggle on the ones you want to use in your design.
+      </p>
+      <div class="step-preview" style="min-height: 280px;">
+        <img src="https://www.figma.com/api/mcp/asset/218446a1-f779-4962-ad40-dfadaf96e33d" alt="Using team library" style="width: 100%; border-radius: 8px;" />
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Ariel Goldberg's team library &mdash; Figma</p>
+    <a href="https://www.figma.com/design/UT0eANTcC2aJoEMj6Zrg0V/Ariel-Goldberg-s-team-library" target="_blank" rel="noopener">Open in Figma →</a>
+  </footer>
+
+</body>
+</html>
