@@ -539,6 +539,23 @@
       }
 
       #welcome {
+        /* Force dark hero regardless of theme — matches Claude Code reference */
+        --section-tone-a: var(--color-black);
+        --surface-high: var(--color-white);
+        --surface-mid: var(--color-slate-light);
+        --surface-low: var(--color-cloud-dark);
+        --theme-surface-surface: var(--color-black);
+        --theme-surface-on-surface: var(--color-white);
+        --theme-surface-on-surface-variant: var(--color-slate-light);
+        --theme-outline-variant: var(--color-border-dark);
+        --accent: var(--color-accent);
+        --button-primary-hover: var(--color-grey);
+        --theme-button-states-primary-hovered: var(--color-grey);
+        --command-surface: var(--color-slate-medium);
+        --command-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        --command-url: var(--color-white);
+        --command-chip-bg: var(--color-white);
+        --command-chip-fg: var(--color-black);
         min-height: min(92dvh, 920px);
         position: relative;
         display: grid;
@@ -550,11 +567,25 @@
       }
 
       #welcome::before {
-        content: none;
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 80% 52% at 50% 74%, color-mix(in srgb, var(--color-accent) 34%, transparent) 0%, transparent 62%),
+          radial-gradient(ellipse 42% 28% at 50% 80%, color-mix(in srgb, var(--color-accent) 20%, transparent) 0%, transparent 52%);
+        pointer-events: none;
+        z-index: 0;
       }
 
       #welcome::after {
-        content: none;
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 220px;
+        opacity: 0.038;
+        pointer-events: none;
+        z-index: 0;
       }
 
       #welcome .hero-rail {
@@ -640,6 +671,19 @@
       #welcome .hero-title-word {
         color: var(--accent);
         font-style: normal;
+        display: inline-block;
+        transition: opacity 0.22s ease, transform 0.22s ease;
+      }
+
+      #welcome .hero-title-word.is-leaving {
+        opacity: 0;
+        transform: translateY(-7px);
+        pointer-events: none;
+      }
+
+      #welcome .hero-title-word.is-entering {
+        opacity: 0;
+        transform: translateY(7px);
       }
 
       #welcome .hero-sub {
@@ -1851,6 +1895,27 @@
         menuCheckbox.checked = false;
       }
     });
+
+    // Word cycling — matches Claude Code hero animation
+    const heroWords = ['inventors', 'builders', 'engineers', 'founders', 'creators', 'teams'];
+    let heroWordIndex = 0;
+    const heroWordEl = document.querySelector('.hero-title-word');
+    if (heroWordEl) {
+      setInterval(() => {
+        heroWordEl.classList.add('is-leaving');
+        setTimeout(() => {
+          heroWordIndex = (heroWordIndex + 1) % heroWords.length;
+          heroWordEl.textContent = heroWords[heroWordIndex];
+          heroWordEl.classList.remove('is-leaving');
+          heroWordEl.classList.add('is-entering');
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              heroWordEl.classList.remove('is-entering');
+            });
+          });
+        }, 220);
+      }, 2800);
+    }
 
     const startCommandNode = document.getElementById('hero-install-command');
     const copyButton = document.querySelector('#welcome .hero-copy');
